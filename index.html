@@ -1,0 +1,2923 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>法261-2班 · 明法笃行，向阳而生</title>
+<meta name="description" content="法261-2班班级官方网站。"/>
+<meta name="theme-color" content="#F7F3EB"/>
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============================================================
+   班级网页 · 主页样式
+   风格：瑞士国际主义 / 12 栏网格 / 暖色低饱和
+   调色：纸白 #F7F3EB · 墨 #292521 · 陶土 #A97C5B
+   ============================================================ */
+:root{
+  --paper:#F7F3EB;
+  --paper-2:#EFE8DB;
+  --paper-3:#E5DBC9;
+  --ink:#292521;
+  --ink-2:#57504A;
+  --ink-3:#8B8177;
+  --line:#D9CFBE;
+  --line-2:#C7BBA6;
+  --clay:#A97C5B;
+  --clay-deep:#8B6344;
+  --sage:#8C8E73;
+  --radius:6px;
+  --radius-lg:26px;
+  --head-h:74px;
+  --ease:cubic-bezier(.2,.75,.25,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.72;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-variant-numeric:tabular-nums;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,p,figure,blockquote{margin:0}
+button{font:inherit;color:inherit}
+::selection{background:var(--paper-3);color:var(--ink)}
+
+/* ---------- 布局基元 ---------- */
+.wrap{
+  width:100%;
+  max-width:1280px;
+  margin:0 auto;
+  padding-inline:clamp(20px,4vw,56px);
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:clamp(16px,2vw,28px);
+  row-gap:clamp(16px,2vw,28px);
+}
+.section{
+  padding-block:clamp(56px,7vw,104px);
+  border-top:1px solid var(--line);
+  scroll-margin-top:calc(var(--head-h) + 8px);
+}
+.section__head{
+  display:flex;
+  align-items:baseline;
+  gap:clamp(10px,1.4vw,18px);
+  padding-bottom:14px;
+  border-bottom:1px solid var(--ink);
+  margin-bottom:clamp(28px,4vw,52px);
+}
+.section__num{
+  font-size:11px;
+  letter-spacing:.16em;
+  color:var(--clay);
+  transform:translateY(-2px);
+}
+.section__title{
+  font-size:clamp(21px,2.6vw,32px);
+  font-weight:600;
+  letter-spacing:-.01em;
+  line-height:1.1;
+}
+.section__en{
+  margin-left:auto;
+  font-size:11px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  white-space:nowrap;
+}
+
+/* ---------- 图片接口 ---------- */
+.media{
+  position:relative;
+  display:block;
+  overflow:hidden;
+  background:var(--paper-2);
+  border-radius:var(--radius);
+  aspect-ratio:4/3;              /* 默认比例，可用 data-ratio 覆盖 */
+  isolation:isolate;
+}
+.media::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  box-shadow:inset 0 0 0 1px rgba(41,37,33,.09);
+  border-radius:inherit;
+  pointer-events:none;
+  z-index:3;
+}
+.media::after{
+  content:attr(data-label);
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:calc(100% - 32px);
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.14em;
+  color:var(--ink-3);
+  z-index:1;
+}
+.media img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:2;                      /* 有图时自动盖住占位文字 */
+  transition:transform .9s var(--ease);
+}
+
+/* ---------- 页头 ---------- */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:rgba(247,243,235,.84);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s,background .3s;
+}
+.site-header.is-scrolled{border-bottom-color:var(--line)}
+.head-inner{
+  display:flex;
+  align-items:center;
+  gap:clamp(16px,3vw,40px);
+  height:var(--head-h);
+  transition:height .3s var(--ease);
+}
+.site-header.is-scrolled .head-inner{height:62px}
+.brand{display:flex;align-items:center;gap:9px;flex:none}
+.brand__logo{
+  width:36px;height:36px;flex:none;
+  object-fit:contain;
+  display:block;
+}
+.brand__name{font-size:22px;font-weight:600;letter-spacing:.06em}
+.brand__en{
+  font-size:10px;letter-spacing:.22em;
+  color:var(--ink-3);
+  padding-left:10px;
+  border-left:1px solid var(--line-2);
+  line-height:1.2;
+  transform:translateY(1px);
+}
+.nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px);margin-left:auto}
+.nav a{
+  position:relative;
+  font-size:13px;
+  color:var(--ink-2);
+  padding-block:4px;
+  transition:color .25s;
+}
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:1px;
+  background:var(--clay);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.nav a:hover{color:var(--ink)}
+.nav a:hover::after,.nav a.is-current::after{transform:scaleX(1)}
+.nav a.is-current{color:var(--ink)}
+.head-cta{
+  flex:none;
+  font-size:12px;
+  letter-spacing:.1em;
+  padding:9px 16px;
+  border:1px solid var(--line-2);
+  border-radius:999px;
+  color:var(--ink-2);
+  transition:background .25s,color .25s,border-color .25s;
+}
+.head-cta:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+/* ---------- 首屏 ---------- */
+.hero{padding-top:clamp(40px,6vw,84px);padding-bottom:clamp(32px,5vw,64px)}
+.hero__meta{
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  border-bottom:1px solid var(--line);
+  padding-bottom:16px;
+  margin-bottom:clamp(26px,4vw,46px);
+}
+.hero__meta span:last-child{margin-left:auto}
+.hero__title{
+  grid-column:1 / span 9;
+  font-size:clamp(40px,7.2vw,104px);
+  line-height:.98;
+  letter-spacing:-.035em;
+  font-weight:600;
+}
+.hero__title em{font-style:normal;color:var(--clay-deep)}
+.hero__aside{
+  grid-column:10 / span 3;
+  align-self:end;
+  font-size:14px;
+  line-height:1.85;
+  color:var(--ink-2);
+  padding-top:8px;
+}
+.hero__aside .rule{
+  display:block;width:100%;height:1px;background:var(--line-2);
+  margin-bottom:14px;
+}
+.hero__figure{margin-top:clamp(24px,4vw,44px)}
+.hero__figure .media{border-radius:8px}
+.hero__cap{
+  display:flex;
+  gap:18px;
+  justify-content:space-between;
+  font-size:11px;
+  letter-spacing:.12em;
+  color:var(--ink-3);
+  padding-top:10px;
+}
+
+/* ---------- 01 简介 ---------- */
+.about__lead{
+  grid-column:1 / span 4;
+  font-size:clamp(17px,1.5vw,20px);
+  line-height:1.7;
+  font-weight:500;
+  letter-spacing:-.005em;
+  padding-right:clamp(0px,2vw,24px);
+}
+.about__lead .quote-mark{color:var(--clay);font-size:1.4em;line-height:0;vertical-align:-.08em;margin-right:.1em}
+.about__body{grid-column:6 / span 7;color:var(--ink-2);font-size:15px}
+.about__body p + p{margin-top:1.1em}
+.about__stats{
+  grid-column:1 / -1;
+  margin-top:clamp(30px,4vw,52px);
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  border-top:1px solid var(--line);
+}
+.stat{
+  padding:22px 18px 4px 0;
+  border-right:1px solid var(--line);
+}
+.stat:last-child{border-right:0}
+.stat__num{
+  display:block;
+  font-size:clamp(26px,3.4vw,40px);
+  font-weight:600;
+  letter-spacing:-.03em;
+  line-height:1;
+}
+.stat__num small{font-size:.45em;font-weight:500;letter-spacing:0;margin-left:5px;color:var(--ink-3)}
+.stat__label{
+  display:block;
+  margin-top:10px;
+  font-size:12px;
+  color:var(--ink-3);
+  letter-spacing:.04em;
+}
+
+/* ---------- 02 宗旨 ---------- */
+.creed__intro{
+  grid-column:1 / span 5;
+  font-size:clamp(15px,1.3vw,17px);
+  color:var(--ink-2);
+  padding-right:clamp(0px,2vw,30px);
+}
+.creed__list{grid-column:7 / span 6;display:grid;gap:0}
+.creed{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:clamp(16px,2.4vw,34px);
+  padding-block:clamp(20px,2.4vw,30px);
+  border-top:1px solid var(--line);
+  transition:padding-left .35s var(--ease);
+}
+.creed:first-child{border-top:1px solid var(--ink)}
+.creed:last-child{border-bottom:1px solid var(--line)}
+.creed:hover{padding-left:10px}
+.creed__no{
+  font-size:11px;
+  letter-spacing:.14em;
+  color:var(--clay);
+  padding-top:7px;
+}
+.creed h3{
+  font-size:clamp(17px,1.6vw,21px);
+  font-weight:600;
+  letter-spacing:.01em;
+}
+.creed h3 span{
+  font-size:11px;
+  font-weight:400;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  margin-left:10px;
+  white-space:nowrap;
+}
+.creed p{
+  margin-top:8px;
+  font-size:14px;
+  line-height:1.8;
+  color:var(--ink-2);
+  max-width:42ch;
+}
+
+/* ---------- 03 成员 ---------- */
+.members__note{
+  grid-column:1 / span 4;
+  font-size:13px;
+  color:var(--ink-3);
+  line-height:1.9;
+}
+.members__grid{
+  grid-column:5 / span 8;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(18px,2.2vw,30px);
+}
+.member{position:relative}
+.member__hit{
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  background:none;
+  cursor:pointer;
+  border-radius:var(--radius);
+  position:relative;
+}
+.member__hit .media{aspect-ratio:4/5;transition:transform .5s var(--ease)}
+.member__hit:hover .media img{transform:scale(1.045)}
+.member__hit:focus-visible{outline:2px solid var(--clay);outline-offset:4px}
+.member__hint,
+.zoom{
+  position:absolute;
+  right:10px;
+  bottom:10px;
+  width:30px;height:30px;
+  border-radius:50%;
+  background:rgba(247,243,235,.92);
+  border:1px solid var(--line-2);
+  display:grid;place-items:center;
+  font-size:14px;
+  line-height:1;
+  color:var(--ink-2);
+  opacity:0;
+  transform:translateY(6px);
+  transition:opacity .3s,transform .3s var(--ease);
+  z-index:4;
+}
+.member__hit:hover .member__hint,
+.member__hit:focus-visible .member__hint,
+.award__cert:hover .zoom,
+.award__cert:focus-visible .zoom{opacity:1;transform:none}
+.member__meta{padding-top:14px;border-top:1px solid var(--line);margin-top:14px}
+.member__name{font-size:16px;font-weight:600;letter-spacing:.02em}
+.member__role{font-size:12px;color:var(--ink-3);margin-top:3px;letter-spacing:.03em}
+
+/* ---------- 04 风采 ---------- */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:clamp(14px,1.8vw,24px);
+}
+.gal{grid-column:span 4}
+.gal--wide{grid-column:span 7}
+.gal--tall{grid-column:span 5}
+.gal--full{grid-column:1 / -1}
+.gal .media{border-radius:8px}
+.gal:hover .media img{transform:scale(1.04)}
+.gal__cap{
+  display:flex;
+  gap:12px;
+  font-size:11px;
+  letter-spacing:.1em;
+  color:var(--ink-3);
+  padding-top:10px;
+}
+.gal__cap span:first-child{color:var(--clay)}
+
+/* ---------- 05 奖项 ---------- */
+.awards{grid-column:1 / -1}
+.award{
+  display:grid;
+  grid-template-columns:88px minmax(0,1.4fr) minmax(0,.9fr) auto 118px;
+  gap:clamp(12px,1.8vw,26px);
+  align-items:center;
+  padding-block:clamp(16px,2vw,22px);
+  border-top:1px solid var(--line);
+  transition:background .3s,padding-left .35s var(--ease);
+}
+.award:first-child{border-top:1px solid var(--ink)}
+.award:last-child{border-bottom:1px solid var(--line)}
+.award:hover{background:rgba(233,223,205,.4);padding-left:10px}
+.award__year{font-size:13px;color:var(--clay);letter-spacing:.06em}
+.award__name{font-size:clamp(15px,1.5vw,18px);font-weight:500;letter-spacing:.01em}
+.award__org{font-size:13px;color:var(--ink-3)}
+.award__tag{
+  font-size:11px;
+  letter-spacing:.12em;
+  color:var(--ink-2);
+  border:1px solid var(--line-2);
+  border-radius:999px;
+  padding:3px 12px;
+  white-space:nowrap;
+  justify-self:end;
+}
+
+/* 奖项证书图片接口：把 <img> 放进 .media 即可 */
+.award__cert{
+  position:relative;
+  justify-self:end;
+  width:118px;
+  padding:0;
+  border:0;
+  background:none;
+  cursor:pointer;
+  display:block;
+  border-radius:4px;
+}
+.award__cert .media{
+  aspect-ratio:4/3;
+  border-radius:4px;
+  transition:transform .4s var(--ease);
+}
+.award__cert:hover .media{transform:translateY(-2px)}
+.award__cert:hover .media img{transform:scale(1.06)}
+.award__cert:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.award__cert .zoom{right:5px;bottom:5px;width:22px;height:22px;font-size:11px}
+.award__cert .media::after{font-size:10px;letter-spacing:.1em}
+
+/* ---------- 06 动态 ---------- */
+.news{
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(18px,2.4vw,32px);
+}
+.news__item{
+  display:block;
+  padding-top:16px;
+  border-top:1px solid var(--ink);
+}
+.news__title{
+  margin-top:14px;
+  font-size:clamp(16px,1.5vw,19px);
+  font-weight:500;
+  line-height:1.5;
+  letter-spacing:-.005em;
+}
+.news__title button{
+  display:inline;
+  margin:0;padding:0;border:0;background:none;
+  color:inherit;font:inherit;text-align:left;
+  cursor:pointer;
+  transition:color .25s;
+}
+.news__item:hover .news__title button,
+.news__title button:hover{color:var(--clay-deep)}
+.news__title button:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.news__desc{margin-top:8px;font-size:13px;color:var(--ink-3);line-height:1.8}
+.news__media{margin-top:14px;border-radius:8px}
+/* 双图并排（竖版人像）：等宽两列，共享上方间距 */
+.news__duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.news__duo .news__media{margin-top:0}
+.modal .news__modal-media{min-height:0;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+/* 弹窗内双图：两列并排，竖版 3:4，覆盖 .media img 的绝对定位 */
+.modal__media.news__modal-media.is-duo{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;aspect-ratio:auto!important;
+}
+.modal__media.news__modal-media.is-duo img{
+  position:relative;inset:auto;
+  width:100%;height:auto;aspect-ratio:3/4;
+  object-fit:cover;border-radius:10px;display:block;
+}
+.modal .news__modal-media[hidden]{display:none}
+
+/* ---------- 07 实用信息：分段控制器 / 面板 ---------- */
+.util-seg{
+  position:relative;
+  display:inline-grid;
+  grid-template-columns:repeat(3,1fr);
+  padding:4px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--paper-2);
+  margin-bottom:30px;
+}
+.util-seg__btn{
+  position:relative;z-index:1;
+  border:0;background:none;cursor:pointer;
+  padding:9px 30px;min-width:120px;
+  font-size:13px;font-weight:500;letter-spacing:.04em;
+  color:var(--ink-3);
+  border-radius:9px;
+  transition:color .3s var(--ease);
+}
+.util-seg__btn:hover{color:var(--ink-2)}
+.util-seg__btn.is-active{color:var(--paper)}
+.util-seg__btn:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+.util-seg__thumb{
+  position:absolute;z-index:0;
+  top:4px;bottom:4px;left:4px;
+  width:calc((100% - 8px)/3);
+  background:var(--ink);
+  border-radius:9px;
+  box-shadow:0 4px 12px -4px rgba(41,37,33,.5);
+  transition:transform .38s var(--ease);
+}
+.util-seg[data-active="schedule"] .util-seg__thumb{transform:translateX(0)}
+.util-seg[data-active="food"] .util-seg__thumb{transform:translateX(100%)}
+.util-seg[data-active="calendar"] .util-seg__thumb{transform:translateX(200%)}
+
+.util-panel{display:none}
+.util-panel.is-active{display:block;animation:util-in .45s var(--ease)}
+@keyframes util-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- 07a 美食 ---------- */
+.food__lead{
+  font-size:13px;color:var(--ink-3);line-height:1.85;
+  max-width:760px;margin-bottom:26px;
+}
+.food__lead b{color:var(--ink-2);font-weight:600}
+.food-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.food-card{
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px 22px;
+  background:var(--paper);
+  border-top:3px solid var(--clay);
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+}
+.food-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(58,42,28,.5)}
+.food-card--sage{border-top-color:var(--sage)}
+.food-card--deep{border-top-color:var(--clay-deep)}
+.food-card--ink{border-top-color:var(--ink-3)}
+.food-card__head{
+  display:flex;align-items:baseline;gap:10px;
+  padding-bottom:12px;margin-bottom:14px;
+  border-bottom:1px solid var(--line);
+}
+.food-card__name{font-size:17px;font-weight:600;letter-spacing:-.01em}
+.food-card__en{font-size:10px;letter-spacing:.14em;color:var(--ink-3);text-transform:uppercase;margin-left:auto}
+.food-card__tip{font-size:11.5px;color:var(--clay-deep);margin-top:2px}
+.food-tags{display:flex;flex-wrap:wrap;gap:7px}
+.food-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:12px;line-height:1.4;
+  padding:5px 11px;
+  border-radius:20px;
+  background:var(--paper-2);
+  color:var(--ink-2);
+  border:1px solid transparent;
+}
+.food-tag b{font-weight:600;color:var(--ink)}
+.food-tag small{font-size:10px;color:var(--ink-3)}
+.food-tag--pick{background:#F6E9E2;color:var(--clay-deep);border-color:#EAD3C5}
+.food-pairing{
+  grid-column:1 / -1;
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;
+  padding:18px 22px;
+  border-radius:14px;
+  background:linear-gradient(120deg,#F6E9E2,var(--paper-2));
+  border:1px solid var(--line);
+}
+.food-pairing__label{font-size:12px;font-weight:600;color:var(--clay-deep);letter-spacing:.06em}
+.food-pairing__body{font-size:13px;color:var(--ink-2);line-height:1.8}
+.food-pairing__body b{color:var(--ink)}
+
+/* ---------- 左侧纵向悬浮导航 ---------- */
+.side-dock{
+  position:fixed;
+  left:clamp(10px,2vw,26px);
+  top:50%;
+  transform:translateY(-50%);
+  z-index:60;
+  display:flex;flex-direction:column;gap:4px;
+  padding:8px 6px;
+  border:1px solid var(--line);
+  border-radius:40px;
+  background:rgba(247,243,235,.9);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  box-shadow:0 10px 30px -14px rgba(58,42,28,.4);
+}
+.side-dock__sep{display:none}
+/* 侧边悬浮拓展栏：绝对定位在导航右侧，胶囊圆角与导航一致，横向滑出 */
+.side-dock__util{
+  position:absolute;
+  left:calc(100% + 14px);
+  top:var(--util-align-y,50%);
+  z-index:2;
+  display:flex;flex-direction:row;align-items:center;gap:4px;
+  padding:6px 8px;
+  border:1px solid var(--line);
+  border-radius:40px;
+  background:rgba(247,243,235,.92);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  backdrop-filter:blur(14px) saturate(150%);
+  box-shadow:0 12px 30px -12px rgba(58,42,28,.42),inset 0 1px 0 rgba(255,255,255,.6);
+  opacity:0;
+  transform:translateY(-50%) translateX(-12px) scale(.96);
+  transform-origin:left center;
+  pointer-events:none;
+  transition:opacity .3s var(--ease),transform .4s var(--ease);
+}
+.side-dock.is-util .side-dock__util{
+  opacity:1;
+  transform:translateY(-50%) translateX(0) scale(1);
+  pointer-events:auto;
+}
+.side-dock__btn,.side-dock__nav{
+  position:relative;
+  width:40px;height:40px;
+  border:0;border-radius:50%;
+  background:none;cursor:pointer;
+  display:grid;place-items:center;
+  color:var(--ink-3);
+  transition:background .25s var(--ease),color .25s var(--ease),transform .25s var(--ease);
+}
+.side-dock__btn:hover,.side-dock__nav:hover{background:var(--paper-3);color:var(--ink-2)}
+.side-dock__btn.is-active,.side-dock__nav.is-active{background:var(--ink);color:var(--paper)}
+.side-dock__btn:focus-visible,.side-dock__nav:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+.side-dock__btn svg,.side-dock__nav svg{width:18px;height:18px}
+.side-dock__label{
+  position:absolute;left:calc(100% + 12px);top:50%;
+  transform:translateY(-50%) translateX(-6px);
+  opacity:0;pointer-events:none;
+  white-space:nowrap;
+  font-size:11px;font-weight:500;letter-spacing:.06em;
+  padding:5px 10px;border-radius:6px;
+  background:var(--ink);color:var(--paper);
+  transition:opacity .22s var(--ease),transform .22s var(--ease);
+}
+.side-dock__btn:hover .side-dock__label,
+.side-dock__btn:focus-visible .side-dock__label,
+.side-dock__nav:hover .side-dock__label,
+.side-dock__nav:focus-visible .side-dock__label{opacity:1;transform:translateY(-50%) translateX(0)}
+
+/* ---------- 07 课表 ---------- */
+.tt__bar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+  margin-bottom:18px;
+}
+.tt__hint{font-size:12px;color:var(--ink-3);letter-spacing:.04em}
+.tt__legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-left:auto}
+.tt__legend span{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-2);white-space:nowrap}
+.tt__legend i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.tt{
+  display:grid;
+  grid-template-columns:104px repeat(5,minmax(0,1fr));
+  grid-auto-rows:minmax(66px,auto);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+}
+.tt__cell{
+  background:var(--paper);
+  min-height:66px;
+  padding:8px 9px;
+  display:flex;flex-direction:column;
+}
+.tt__head{
+  background:var(--paper-2);
+  align-items:center;justify-content:center;
+  font-size:12px;font-weight:600;letter-spacing:.08em;
+  min-height:44px;
+}
+.tt__time{
+  align-items:center;justify-content:center;
+  text-align:center;
+  font-size:10.5px;line-height:1.5;color:var(--ink-3);
+  letter-spacing:.02em;
+}
+.tt__time b{display:block;color:var(--ink-2);font-weight:600;font-size:12px}
+.tt__slot{background:var(--paper);min-height:66px}
+.tt__course{
+  position:relative;
+  border:0;border-left:3px solid var(--c,var(--clay));
+  border-radius:4px;
+  background:var(--bg,var(--paper-2));
+  padding:6px 8px;
+  text-align:left;
+  cursor:pointer;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;gap:2px;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s;
+}
+.tt__slot--split{flex-direction:row;gap:3px;padding:5px 4px}
+.tt__slot--split .tt__course{padding:5px 4px;border-left-width:2px}
+.tt__slot--split .tt__name{font-size:10.5px}
+.tt__slot--split .tt__meta,.tt__slot--split .tt__room{font-size:9px}
+.tt__course:hover{transform:translateY(-2px);box-shadow:0 8px 18px -8px rgba(58,42,28,.4);filter:saturate(1.15);z-index:2}
+.tt__course:focus-visible{outline:2px solid var(--clay);outline-offset:2px;z-index:2}
+.tt__name{font-size:12px;font-weight:600;line-height:1.3;color:var(--ink)}
+.tt__meta{font-size:10px;line-height:1.45;color:var(--ink-3)}
+.tt__room{font-size:10px;color:var(--ink-2);margin-top:auto}
+.tt__note{margin-top:14px;font-size:11px;line-height:1.8;color:var(--ink-3)}
+
+/* 弹窗内的课表详情 */
+.tt__detail-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.tt__tag{display:inline-block;padding:3px 9px;border-radius:20px;background:var(--paper-2);font-size:11px;letter-spacing:.06em;color:var(--ink-2)}
+.tt__grid{display:grid;grid-template-columns:76px 1fr;gap:10px 14px;font-size:14px;line-height:1.7}
+.tt__grid dt{color:var(--ink-3);font-size:12px}
+.tt__grid dd{margin:0;color:var(--ink-2)}
+
+/* 平板 */
+@media (max-width:900px){
+  .tt{grid-template-columns:88px repeat(5,minmax(0,1fr))}
+  .tt__cell,.tt__slot{min-height:60px;padding:6px}
+  .tt__name{font-size:11px}
+  .tt__meta,.tt__room{font-size:9.5px}
+}
+/* 手机：整表可横向滚动，保证可读 */
+@media (max-width:640px){
+  .tt__bar{gap:8px}
+  .tt__legend{margin-left:0;width:100%}
+  .tt-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px}
+  .tt{grid-template-columns:76px repeat(5,minmax(116px,1fr));min-width:680px}
+  .tt__cell,.tt__slot{min-height:58px}
+  .tt__hint::after{content:"（左右滑动查看整周）"}
+}
+
+/* ---------- 08 校历 ---------- */
+/* 分段控制器 */
+.seg{
+  position:relative;
+  display:inline-grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  padding:4px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--paper-2);
+  margin-bottom:30px;
+}
+.seg__btn{
+  position:relative;z-index:1;
+  border:0;background:none;cursor:pointer;
+  padding:9px 26px;min-width:132px;
+  font-size:13px;font-weight:500;letter-spacing:.04em;
+  color:var(--ink-3);
+  border-radius:9px;
+  transition:color .3s var(--ease);
+}
+.seg__btn:hover{color:var(--ink-2)}
+.seg__btn.is-active{color:var(--paper)}
+.seg__btn:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+.seg__thumb{
+  position:absolute;z-index:0;
+  top:4px;bottom:4px;left:4px;
+  width:calc(50% - 4px);
+  background:var(--ink);
+  border-radius:9px;
+  box-shadow:0 4px 12px -4px rgba(41,37,33,.5);
+  transition:transform .38s var(--ease);
+}
+.seg[data-active="t2"] .seg__thumb{transform:translateX(100%)}
+
+/* 学期面板 */
+.cal-panel{display:none}
+.cal-panel.is-active{display:block;animation:cal-in .45s var(--ease)}
+@keyframes cal-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.cal__head{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 20px;
+  padding-bottom:16px;margin-bottom:26px;
+  border-bottom:1px solid var(--line);
+}
+.cal__term{font-size:clamp(20px,2.4vw,28px);font-weight:600;letter-spacing:-.01em}
+.cal__range{font-size:12px;color:var(--ink-3);letter-spacing:.06em;margin-left:auto}
+.cal__weeks{font-size:12px;color:var(--clay);letter-spacing:.08em}
+
+/* 月度时间轴 */
+.cal__months{display:grid;gap:clamp(22px,3vw,38px)}
+.cal-month{display:grid;grid-template-columns:66px 1fr;gap:16px}
+.cal-month__label{
+  font-size:13px;font-weight:600;color:var(--clay-deep);
+  letter-spacing:.1em;
+  padding-top:4px;
+  position:sticky;top:calc(var(--head-h) + 16px);
+  align-self:start;
+}
+.cal-month__label small{display:block;font-size:10px;color:var(--ink-3);font-weight:400;letter-spacing:.04em;margin-top:2px}
+.cal-events{display:grid;gap:10px;border-left:1px solid var(--line);padding-left:20px}
+
+.cal-ev{
+  display:grid;
+  grid-template-columns:82px 1fr;
+  gap:14px;
+  align-items:start;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--paper);
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+}
+.cal-ev:hover{transform:translateX(3px);box-shadow:0 6px 16px -10px rgba(58,42,28,.5)}
+.cal-ev__date{font-size:12px;font-weight:600;line-height:1.35;color:var(--ink-2)}
+.cal-ev__date small{display:block;font-size:10px;color:var(--ink-3);font-weight:400;margin-top:2px}
+.cal-ev__body{min-width:0}
+.cal-ev__title{font-size:14px;font-weight:600;line-height:1.4}
+.cal-ev__desc{font-size:11.5px;color:var(--ink-3);line-height:1.65;margin-top:3px}
+
+.cal-ev--event{border-left:3px solid var(--clay)}
+.cal-ev--festival{border-left:3px solid var(--sage)}
+.cal-ev--exam{background:linear-gradient(90deg,#F6E9E2,var(--paper));border-left:3px solid var(--clay-deep)}
+.cal-ev--break{background:var(--paper-2);border-left:3px solid var(--ink-3)}
+.cal-ev__badge{
+  display:inline-block;font-size:9px;letter-spacing:.08em;
+  padding:2px 7px;border-radius:20px;margin-left:8px;
+  vertical-align:middle;
+  background:var(--paper-3);color:var(--ink-2);
+}
+.cal-ev--exam .cal-ev__badge{background:var(--clay-deep);color:var(--paper)}
+
+.cal__note{margin-top:22px;font-size:11px;line-height:1.8;color:var(--ink-3)}
+.cal__dot{display:inline-block;width:8px;height:8px;border-radius:2px;margin:0 3px 0 6px;vertical-align:middle}
+.cal__dot--exam{background:var(--clay-deep)}
+.cal__dot--event{background:var(--clay)}
+
+@media (max-width:640px){
+  .seg{display:flex;width:100%}
+  .seg__btn{flex:1;min-width:0;padding:9px 8px}
+  .seg__thumb{width:calc(50% - 4px)}
+  .cal__range{margin-left:0;width:100%}
+  .cal-month{grid-template-columns:1fr;gap:8px}
+  .cal-month__label{position:static;padding-top:0}
+  .cal-month__label small{display:inline;margin-left:8px}
+  .cal-events{padding-left:14px}
+  .cal-ev{grid-template-columns:1fr;gap:4px}
+}
+
+@media (max-width:900px){
+  .side-dock{left:8px;padding:6px 4px;overflow:visible}
+  .side-dock__btn,.side-dock__nav{width:38px;height:38px}
+  .side-dock__btn svg,.side-dock__nav svg{width:16px;height:16px}
+}
+@media (max-width:640px){
+  .util-seg{display:flex;width:100%}
+  .util-seg__btn{flex:1;min-width:0;padding:9px 6px}
+  .util-seg__thumb{width:calc((100% - 8px)/3)}
+  .food-grid{grid-template-columns:1fr}
+  .side-dock{
+    left:50%;top:auto;bottom:68px;
+    transform:translateX(-50%);
+    flex-direction:row;border-radius:40px;
+    max-width:calc(100vw - 20px);max-height:none;
+    overflow:visible;
+    padding:6px 10px;
+  }
+  .side-dock__sep{display:none}
+  /* 手机端：拓展栏改为在导航条正上方水平弹出 */
+  .side-dock__util{
+    left:var(--util-align-x,50%);top:auto;bottom:calc(100% + 12px);
+    transform:translateX(-50%) translateY(10px) scale(.96);
+    transform-origin:center bottom;
+  }
+  .side-dock.is-util .side-dock__util{
+    transform:translateX(-50%) translateY(0) scale(1);
+  }
+  .side-dock__btn,.side-dock__nav{flex:none}
+  .side-dock__label{display:none}
+}
+
+/* ---------- 09 联系 ---------- */
+.contact__big{
+  grid-column:1 / span 8;
+  font-size:clamp(26px,4.4vw,58px);
+  line-height:1.1;
+  letter-spacing:-.03em;
+  font-weight:600;
+}
+.contact__big a{
+  color:var(--clay-deep);
+  border-bottom:1px solid var(--line-2);
+  transition:border-color .3s;
+}
+.contact__big a:hover{border-bottom-color:var(--clay-deep)}
+.contact__side{
+  grid-column:10 / span 3;
+  align-self:end;
+  font-size:13px;
+  line-height:2;
+  color:var(--ink-2);
+}
+.contact__side dt{font-size:11px;letter-spacing:.16em;color:var(--ink-3);text-transform:uppercase}
+.contact__side dd{margin:0 0 12px}
+
+/* ---------- 页脚 ---------- */
+.site-footer{
+  border-top:1px solid var(--ink);
+  padding-block:clamp(30px,4vw,48px);
+  font-size:12px;
+  color:var(--ink-3);
+}
+.foot-inner{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:24px;
+}
+.foot-brand{grid-column:1 / span 4;color:var(--ink-2);font-size:13px;line-height:1.9}
+.foot-col{grid-column:span 2}
+.foot-col h4{
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  font-weight:500;
+  margin-bottom:10px;
+}
+.foot-col a{display:block;padding-block:3px;color:var(--ink-2);transition:color .25s}
+.foot-col a:hover{color:var(--clay-deep)}
+.foot-col:last-of-type{grid-column:11 / span 2}
+.foot-legal{
+  grid-column:1 / -1;
+  margin-top:clamp(20px,3vw,36px);
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  display:flex;
+  gap:16px;
+  justify-content:space-between;
+  font-size:11px;
+  letter-spacing:.06em;
+}
+
+/* ---------- 成员弹窗 ---------- */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:120;
+  display:grid;
+  place-items:center;
+  padding:clamp(14px,3.5vw,40px);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .32s ease,visibility .32s;
+}
+.modal.is-open{opacity:1;visibility:visible}
+.modal__veil{
+  position:absolute;
+  inset:0;
+  background:rgba(64,50,38,.34);
+  -webkit-backdrop-filter:blur(18px) saturate(120%);
+  backdrop-filter:blur(18px) saturate(120%);
+}
+.modal__panel{
+  position:relative;
+  width:min(880px,100%);
+  max-height:min(86vh,780px);
+  overflow:auto;
+  display:grid;
+  grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+  background:var(--paper);
+  border-radius:var(--radius-lg);
+  box-shadow:0 34px 90px -30px rgba(58,42,28,.45),0 2px 0 rgba(255,255,255,.6) inset;
+  transform:translateY(18px) scale(.985);
+  transition:transform .42s var(--ease);
+}
+.modal.is-open .modal__panel{transform:none}
+.modal__panel--text{width:min(680px,100%);grid-template-columns:1fr}
+.modal__media{
+  position:relative;
+  min-height:340px;
+  border-radius:var(--radius-lg) 0 0 var(--radius-lg);
+  overflow:hidden;
+  background:var(--paper-2);
+  aspect-ratio:auto;
+}
+.modal__media::before{border-radius:0}
+.modal__body{
+  padding:clamp(26px,3.2vw,44px);
+  padding-right:clamp(30px,3.6vw,48px);
+}
+.modal__eyebrow{
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--clay);
+  margin-bottom:16px;
+}
+.modal__name{
+  font-size:clamp(24px,2.8vw,34px);
+  font-weight:600;
+  letter-spacing:-.02em;
+  line-height:1.15;
+}
+.modal__role{
+  margin-top:8px;
+  font-size:13px;
+  color:var(--ink-3);
+  letter-spacing:.04em;
+  padding-bottom:20px;
+  border-bottom:1px solid var(--line);
+}
+.modal__bio{
+  margin-top:20px;
+  font-size:14.5px;
+  line-height:1.9;
+  color:var(--ink-2);
+}
+.modal__bio p + p{margin-top:1em}
+.modal__close{
+  position:absolute;
+  top:14px;right:14px;
+  width:38px;height:38px;
+  border-radius:50%;
+  border:1px solid var(--line-2);
+  background:rgba(247,243,235,.92);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  display:grid;place-items:center;
+  cursor:pointer;
+  z-index:5;
+  color:var(--ink-2);
+  transition:background .25s,color .25s,transform .25s,border-color .25s;
+}
+.modal__close:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);transform:rotate(90deg)}
+.modal__close:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+.modal__close svg{width:13px;height:13px}
+body.is-locked{overflow:hidden}
+
+/* ---------- 彩蛋：班徽连击提示 + 导员照片 ---------- */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:clamp(28px,6vh,56px);
+  transform:translate(-50%,18px);
+  z-index:150;
+  padding:12px 24px;
+  border-radius:999px;
+  background:rgba(41,37,33,.94);
+  color:var(--paper);
+  font-size:14px;
+  letter-spacing:.06em;
+  white-space:nowrap;
+  box-shadow:0 12px 30px -10px rgba(58,42,28,.5);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .28s ease,transform .28s var(--ease),visibility .28s;
+}
+.toast.is-show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.counselor__panel{
+  position:relative;
+  width:min(540px,100%);
+  background:var(--paper);
+  border-radius:var(--radius-lg);
+  padding:14px 14px 6px;
+  box-shadow:0 34px 90px -30px rgba(58,42,28,.45),0 2px 0 rgba(255,255,255,.6) inset;
+  transform:translateY(18px) scale(.985);
+  transition:transform .42s var(--ease);
+}
+.modal.is-open .counselor__panel{transform:none}
+.counselor__img{
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border-radius:calc(var(--radius-lg) - 8px);
+  background:var(--paper-2);
+}
+.counselor__cap{
+  margin:0;
+  padding:14px 4px 10px;
+  text-align:center;
+  font-size:13px;
+  letter-spacing:.08em;
+  color:var(--ink-2);
+}
+.counselor__cap b{font-weight:600;color:var(--ink)}
+/* 倒计时锁：10 秒内不可关闭 */
+.counselor__close.is-locked{
+  cursor:default;
+  background:rgba(247,243,235,.94);
+  color:var(--clay-deep);
+  font-size:13px;
+  font-weight:600;
+  font-variant-numeric:tabular-nums;
+}
+.counselor__close.is-locked:hover{transform:none;background:rgba(247,243,235,.94);color:var(--clay-deep);border-color:var(--line-2)}
+.counselor__close.is-locked svg{display:none}
+.counselor__count{
+  display:none;
+  position:absolute;
+  inset:0;
+  place-items:center;
+  line-height:1;
+}
+.counselor__close.is-locked .counselor__count{display:grid}
+
+/* ---------- 证书放大 ---------- */
+.lightbox__panel{
+  position:relative;
+  width:min(960px,100%);
+  max-height:min(90vh,860px);
+  overflow:auto;
+  padding:16px 16px 0;
+  background:var(--paper);
+  border-radius:var(--radius-lg);
+  box-shadow:0 34px 90px -30px rgba(58,42,28,.45);
+  transform:translateY(18px) scale(.985);
+  transition:transform .42s var(--ease);
+}
+.modal.is-open .lightbox__panel{transform:none}
+.lightbox__panel .media{
+  aspect-ratio:4/3;
+  border-radius:10px;
+  background:var(--paper-2);
+}
+.lightbox__panel .media img{object-fit:contain}   /* 证书不裁切，完整显示 */
+.lightbox__panel .modal__close{top:22px;right:22px;z-index:6}
+.lightbox__cap{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  padding:14px 4px 16px;
+  font-size:12px;
+  letter-spacing:.06em;
+  color:var(--ink-3);
+}
+.lightbox__cap b{font-size:13px;font-weight:500;color:var(--ink);letter-spacing:.02em}
+.lightbox__cap .t{margin-left:auto;color:var(--clay);white-space:nowrap}
+
+/* ---------- 入场动画 ---------- */
+html.js [data-reveal]{
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .8s var(--ease),transform .8s var(--ease);
+}
+html.js [data-reveal].is-in{opacity:1;transform:none}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:1080px){
+  .hero__title{grid-column:1 / -1}
+  .hero__aside{grid-column:1 / span 7;margin-top:4px}
+  .about__lead{grid-column:1 / -1;margin-bottom:20px}
+  .about__body{grid-column:1 / -1}
+  .creed__intro{grid-column:1 / -1;margin-bottom:24px}
+  .creed__list{grid-column:1 / -1}
+  .members__note{grid-column:1 / -1;margin-bottom:24px}
+  .members__grid{grid-column:1 / -1;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gal--wide,.gal--tall{grid-column:span 6}
+  .gal--full{grid-column:1 / -1}
+  .contact__big{grid-column:1 / -1}
+  .contact__side{grid-column:1 / -1;margin-top:24px}
+}
+@media (max-width:820px){
+  :root{--head-h:64px}
+  .nav{display:none}
+  .head-cta{margin-left:auto}
+  .about__stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat{border-bottom:1px solid var(--line);padding-bottom:18px}
+  .stat:nth-child(2n){border-right:0}
+  .members__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .news{grid-template-columns:1fr;gap:24px}
+  .award{grid-template-columns:56px minmax(0,1fr) 92px;row-gap:6px;align-items:start}
+  .award__org{grid-column:2;font-size:12px}
+  .award__cert{grid-column:3;grid-row:2;width:92px;justify-self:end}
+  .award__tag{align-self:start;margin-top:1px}
+  .foot-brand{grid-column:1 / -1}
+  .foot-col{grid-column:span 3}
+  .modal__panel{grid-template-columns:1fr;max-height:88vh}
+  .modal__media{border-radius:var(--radius-lg) var(--radius-lg) 0 0;min-height:0;aspect-ratio:16/10}
+}
+@media (max-width:600px){
+  .brand__en{display:none}
+  .members__grid{grid-template-columns:1fr}
+  .gal--wide,.gal--tall,.gal{grid-column:1 / -1}
+  .hero__meta{flex-wrap:wrap;gap:8px 12px}
+  .hero__meta span:last-child{margin-left:0}
+  .award{grid-template-columns:52px minmax(0,1fr);row-gap:6px}
+  .award__org{grid-column:2}
+  .award__tag{grid-column:2;justify-self:start;margin-top:2px}
+  .award__cert{grid-column:2;grid-row:auto;width:108px;justify-self:start;margin-top:4px}
+  .lightbox__panel{padding:10px 10px 0}
+  .lightbox__panel .modal__close{top:16px;right:16px}
+  .foot-col{grid-column:span 6}
+  .section__en{display:none}
+  .modal__body{padding:24px 22px 28px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  html.js [data-reveal]{opacity:1;transform:none}
+}
+
+/* ============================================================
+   毛玻璃增强：悬浮导航 + 所有弹出界面
+   —— 半透明磨砂 + 强模糊 + 细高光描边；磨砂层保持较高不透明度，
+      背后内容被充分虚化，前景文字维持深色高对比，确保可读性。
+   ============================================================ */
+
+/* —— 悬浮导航：更细腻的磨砂玻璃胶囊 —— */
+.side-dock{
+  background:linear-gradient(150deg,rgba(247,243,235,.74),rgba(233,225,211,.64));
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  backdrop-filter:blur(18px) saturate(160%);
+  border-color:rgba(255,255,255,.72);
+  box-shadow:0 12px 34px -12px rgba(58,42,28,.44),inset 0 1px 0 rgba(255,255,255,.85);
+}
+.side-dock__label{
+  background:rgba(41,37,33,.82);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.15);
+}
+
+/* —— 导航项：默认无背景的浅色线性图标（与示例一致）—— */
+.side-dock__btn,.side-dock__nav{
+  background:none;
+  border:0;
+  color:var(--ink-3);
+  box-shadow:none;
+  transition:background .28s var(--ease),color .28s var(--ease),transform .28s var(--ease),box-shadow .28s var(--ease);
+}
+/* 悬停：仅为经过的项添加浅色圆形背景 + 柔和光感 */
+.side-dock__btn:not(.is-active):hover,.side-dock__nav:not(.is-active):hover{
+  color:var(--ink);
+  background:rgba(222,214,201,.52);
+  transform:scale(1.06);
+  box-shadow:
+    0 4px 14px -4px rgba(58,42,28,.3),
+    0 0 16px 2px rgba(169,124,91,.45),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+}
+/* 选中：深色实心圆 + 白图标（与示例一致） */
+.side-dock__btn.is-active,.side-dock__nav.is-active{
+  background:linear-gradient(150deg,rgba(59,53,46,.78),rgba(41,37,33,.72));
+  color:var(--paper);
+  box-shadow:0 4px 12px -4px rgba(41,37,33,.45),0 0 14px 1px rgba(169,124,91,.45);
+}
+.side-dock__btn.is-active:hover,.side-dock__nav.is-active:hover{
+  transform:scale(1.05);
+  box-shadow:0 6px 16px -4px rgba(41,37,33,.5),0 0 18px 2px rgba(169,124,91,.55);
+}
+/* 选中滑动指示块：绝对定位，JS 计算目标位置后 translate 平滑移动 */
+.side-dock__thumb{
+  position:absolute;
+  left:0;top:0;
+  width:40px;height:40px;
+  border-radius:50%;
+  background:linear-gradient(150deg,rgba(59,53,46,.78),rgba(41,37,33,.72));
+  box-shadow:0 4px 12px -4px rgba(41,37,33,.45),0 0 14px 1px rgba(169,124,91,.45);
+  z-index:0;
+  pointer-events:none;
+  opacity:0;
+  transform:translate3d(0,0,0);
+  transition:transform .42s var(--ease),opacity .3s ease,width .28s var(--ease),height .28s var(--ease);
+}
+.side-dock__thumb.is-visible{opacity:1}
+/* 滑块就位后，选中按钮自身透明，由滑块承担黑底 */
+.side-dock.is-sliding .side-dock__btn.is-active,
+.side-dock.is-sliding .side-dock__nav.is-active{background:transparent;box-shadow:none}
+/* 图标需位于滑块之上 */
+.side-dock__btn svg,.side-dock__nav svg{position:relative;z-index:1}
+/* 悬停/聚焦的按钮整体浮到相邻按钮之上，避免横向排列时相邻图标盖住伸出的提示标签；
+   标签在按钮内部也高于 svg，确保文字始终可读 */
+.side-dock__btn:hover,.side-dock__nav:hover,
+.side-dock__btn:focus-visible,.side-dock__nav:focus-visible{z-index:5}
+.side-dock__label{z-index:3}
+
+/* —— 实用信息分段控制器：与悬浮导航一致的毛玻璃 + 辉光 + 浮起 + 滑动 —— */
+.util-seg{
+  background:linear-gradient(150deg,rgba(247,243,235,.74),rgba(233,225,211,.64));
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  backdrop-filter:blur(18px) saturate(160%);
+  border-color:rgba(255,255,255,.72);
+  box-shadow:0 12px 30px -14px rgba(58,42,28,.4),inset 0 1px 0 rgba(255,255,255,.85);
+}
+.util-seg__btn{
+  color:var(--ink-3);
+  transition:color .28s var(--ease),transform .28s var(--ease),box-shadow .28s var(--ease),background .28s var(--ease);
+}
+/* 悬停非选中项：浅色半透明底 + 陶土辉光 + 轻微浮起（与侧栏一致） */
+.util-seg__btn:not(.is-active):hover,
+.util-seg__btn:not(.is-active):focus-visible{
+  color:var(--ink);
+  background:rgba(222,214,201,.52);
+  transform:scale(1.04);
+  box-shadow:
+    0 4px 14px -4px rgba(58,42,28,.3),
+    0 0 16px 2px rgba(169,124,91,.45),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+  z-index:2;
+}
+/* 滑块：半透明深色玻璃 + 陶土辉光，切换时平滑滑动 */
+.util-seg__thumb{
+  background:linear-gradient(150deg,rgba(59,53,46,.78),rgba(41,37,33,.72));
+  box-shadow:0 4px 12px -4px rgba(41,37,33,.45),0 0 14px 1px rgba(169,124,91,.45);
+}
+
+/* —— 班徽 & 顶栏「联络我们」：与侧栏同款光感玻璃背景 —— */
+/* 班徽：浅色半透明圆形玻璃底 + 陶土辉光，悬停浮起增强（图片用 contain 不被裁切） */
+.brand__logo{
+  width:44px;height:44px;
+  border-radius:50%;
+  padding:3px;
+  background:linear-gradient(150deg,rgba(255,255,255,.6),rgba(233,225,211,.4));
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 4px 12px -5px rgba(58,42,28,.34),0 0 10px 1px rgba(169,124,91,.32),inset 0 1px 0 rgba(255,255,255,.85);
+  -webkit-backdrop-filter:blur(10px) saturate(150%);
+  backdrop-filter:blur(10px) saturate(150%);
+  transition:transform .28s var(--ease),box-shadow .28s var(--ease),background .28s var(--ease);
+}
+.brand__logo:hover{
+  transform:scale(1.1);
+  background:linear-gradient(150deg,rgba(255,255,255,.78),rgba(233,225,211,.55));
+  box-shadow:0 7px 18px -6px rgba(58,42,28,.42),0 0 20px 3px rgba(169,124,91,.55),inset 0 1px 0 rgba(255,255,255,.95);
+}
+/* 顶栏联络按钮：浅色磨砂玻璃 + 深色文字保证可读，悬停浮起 + 陶土辉光（覆盖原实心深色 hover） */
+.head-cta{
+  background:linear-gradient(150deg,rgba(255,255,255,.6),rgba(233,225,211,.42));
+  border-color:rgba(255,255,255,.72);
+  color:var(--ink);
+  -webkit-backdrop-filter:blur(12px) saturate(150%);
+  backdrop-filter:blur(12px) saturate(150%);
+  box-shadow:0 4px 12px -5px rgba(58,42,28,.3),inset 0 1px 0 rgba(255,255,255,.85);
+  transition:background .28s var(--ease),color .28s var(--ease),border-color .28s var(--ease),transform .28s var(--ease),box-shadow .28s var(--ease);
+}
+.head-cta:hover{
+  background:linear-gradient(150deg,rgba(255,255,255,.8),rgba(233,225,211,.58));
+  border-color:rgba(255,255,255,.9);
+  color:var(--ink);
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px -6px rgba(58,42,28,.4),0 0 18px 2px rgba(169,124,91,.5),inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+/* —— 弹窗遮罩：磨砂压暗，突出玻璃面板 —— */
+.modal__veil{
+  background:rgba(64,50,38,.4);
+  -webkit-backdrop-filter:blur(22px) saturate(120%);
+  backdrop-filter:blur(22px) saturate(120%);
+}
+
+/* —— 弹窗通用玻璃质感：主面板 / 文字面板 / 导员彩蛋 / 证书放大 —— */
+.modal__panel,
+.counselor__panel,
+.lightbox__panel{
+  background:linear-gradient(150deg,rgba(250,247,241,.9),rgba(238,231,219,.84));
+  -webkit-backdrop-filter:blur(24px) saturate(150%);
+  backdrop-filter:blur(24px) saturate(150%);
+  border:1px solid rgba(255,255,255,.78);
+  box-shadow:0 34px 90px -30px rgba(40,30,20,.55),inset 0 1px 0 rgba(255,255,255,.92);
+}
+
+/* 图片区保持不透明实底，避免玻璃透视影响画面
+   注意：不改 .modal__media::before —— 它 z-index:3 高于图片 z-index:2，
+   一旦加背景就会盖住图片，仅保留其内描边即可。 */
+.modal__media{background:var(--paper-2)}
+
+/* 正文区域叠一层更实的浅底，双重保障文字对比度 */
+.modal__body{
+  background:linear-gradient(160deg,rgba(250,247,241,.55),rgba(245,240,231,.38));
+}
+
+/* 加深弹窗内文字，保证在半透明磨砂层上清晰可读 */
+.modal__eyebrow{color:var(--clay-deep)}
+.modal__bio{color:var(--ink)}
+.modal__role,.lightbox__cap{color:var(--ink-2)}
+.lightbox__cap b,.counselor__cap,.counselor__cap b{color:var(--ink)}
+
+/* 关闭按钮：磨砂玻璃 */
+.modal__close{
+  background:rgba(250,247,241,.74);
+  -webkit-backdrop-filter:blur(12px) saturate(150%);
+  backdrop-filter:blur(12px) saturate(150%);
+  border-color:rgba(255,255,255,.8);
+}
+
+/* Toast 提示：深色磨砂胶囊 */
+.toast{
+  background:rgba(41,37,33,.8);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  backdrop-filter:blur(16px) saturate(140%);
+  border:1px solid rgba(255,255,255,.16);
+}
+</style>
+<meta name="AIGC" content="{&#34;AIGC&#34;:{&#34;Label&#34;:&#34;1&#34;,&#34;ContentProducer&#34;:&#34;001191340000711771143J00000&#34;,&#34;ProduceID&#34;:&#34;1e1f6e837e60e6830f832a10ae890f6d97ba4b7dd21024a47170977c590f4270&#34;,&#34;ReservedCode1&#34;:&#34;&#34;,&#34;ContentPropagator&#34;:&#34;001191340000711771143J00000&#34;,&#34;PropagateID&#34;:&#34;1e1f6e837e60e6830f832a10ae890f6d97ba4b7dd21024a47170977c590f4270&#34;,&#34;ReservedCode2&#34;:&#34;&#34;}}"/></head>
+<body id="top">
+
+<!-- =========================================================
+     图片接口说明（Image slots）
+     .media 就是一个图片占位框，替换方式三步：
+     1) 把图片放到本文件同级的 assets/ 目录，或直接用完整 http(s) 地址；
+     2) 在 .media 里加一行 <img>，图片会自动裁切填满占位框：
+          <div class="media" data-ratio="4/5" data-label="成员照片">
+            <img src="assets/member-01.jpg" alt="林叙">
+          </div>
+     3) 比例用 data-ratio 控制（如 4/5、1/1、16/9、21/9），无需改 CSS。
+     有 <img> 时占位文字自动被覆盖，不需要删除 data-label。
+     ========================================================= -->
+
+<header class="site-header">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top" aria-label="法261-2班 首页">
+      <img class="brand__logo" src="班徽-透明.png" alt="" aria-hidden="true">
+      <span class="brand__name">法261-2班</span>
+      <span class="brand__en">261-2 CLASS STUDIO</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#about">简介</a>
+      <a href="#creed">宗旨</a>
+      <a href="#members">成员</a>
+      <a href="#gallery">风采</a>
+      <a href="#awards">奖项</a>
+      <a href="#journal">动态</a>
+      <a href="#utility">实用信息</a>
+    </nav>
+    <a class="head-cta" href="#contact">联络我们</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= 首屏 ================= -->
+  <section class="hero wrap">
+    <div class="hero__meta">
+      <span>Est. 2026</span>
+      <span>Design &Study; Research</span>
+      <span>ShanDong / YanTai</span>
+      <span>No.18</span>
+    </div>
+    <div class="grid">
+      <h1 class="hero__title"> 明法笃行，<br/>向阳<em>而</em>生。</h1>
+      <div class="hero__aside">
+        <span class="rule" aria-hidden="true"></span>
+        我们是一个由37名同学组建起的大家庭，力争在同学们的大学生活中，留下属于我们的261-2回忆。
+      </div>
+    </div>
+    <div class="hero__figure">
+      <div class="media" data-ratio="21/9" data-label="合照图片 · 21:9">
+        <img src="班级合照.jpg" alt="班级合照" fetchpriority="high" decoding="async">
+      </div>
+      <div class="hero__cap">
+        <span>Fig. 01 — 班级日常</span>
+        <span>Grid 12 / Gutter 28</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 01 简介 ================= -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="section__num">01</span>
+        <h2 class="section__title">简介</h2>
+        <span class="section__en">About</span>
+      </div>
+      <div class="grid">
+        <p class="about__lead" data-reveal="">
+          <span class="quote-mark" aria-hidden="true">“</span>好的班级不张扬——它就放在那里，让事情变得更温暖，更容易。
+        </p>
+        <div class="about__body" data-reveal="">
+          <p>法261-2班组建于 2026 年，来自天南海北的39名同学，来到烟台大学，共赴山海之约，组建起了我们小小的261-2班，虽然我们可能不是最快的，不是最亮眼的，但我们一定是最温暖的</p>
+          <p>我们的工作方法很朴素——先弄清楚问题是什么，再用简洁易懂的语言传达给班级的每一位同学，通过贯彻落实班委成员补位制度和宿舍联系制度，我们互相连接，互帮互助，让班级里每一位同学的需求都被看见，让大家共同成长。</p>
+          <p>在学习与生活中，我们争做同学们在烟台大学的大家庭，在这个快节奏的时代，一切都是暂时的，唯有人情的温暖，放到十年后也不会过时。</p>
+        </div>
+        <div class="about__stats">
+          <div class="stat"><span class="stat__num">2026<small>年</small></span><span class="stat__label">成立年份</span></div>
+          <div class="stat"><span class="stat__num">20+<small>个</small></span><span class="stat__label">参与项目</span></div>
+          <div class="stat"><span class="stat__num">37<small>位</small></span><span class="stat__label">班级成员</span></div>
+          <div class="stat"><span class="stat__num">20+<small>项</small></span><span class="stat__label">获得奖项</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 宗旨 ================= -->
+  <section class="section" id="creed">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="section__num">02</span>
+        <h2 class="section__title">宗旨</h2>
+        <span class="section__en">Mission</span>
+      </div>
+      <div class="grid">
+        <div class="creed__intro" data-reveal="">
+          <p>我们的班级宗旨是每一个法261-2班人共同签署，共同遵守的约定。</p>
+          <p style="margin-top:1em;color:var(--ink-3);font-size:13px;">真正的班级宗旨落实在学习生活中的每件小事里。</p>
+        </div>
+        <div class="creed__list">
+          <article class="creed" data-reveal="">
+            <span class="creed__no">01</span>
+            <div>
+              <h3>温暖 <span>Warmth</span></h3>
+              <p>这里没有冷冰冰的管理和命令，取而代之的是温暖的指引、提醒和帮助”。</p>
+            </div>
+          </article>
+          <article class="creed" data-reveal="">
+            <span class="creed__no">02</span>
+            <div>
+              <h3>高效 <span>Effiency</span></h3>
+              <p>好的班集体不能把成员困在“分内”的笼子里，而应该把互帮互助落实到每一件工作中。</p>
+            </div>
+          </article>
+          <article class="creed" data-reveal="">
+            <span class="creed__no">03</span>
+            <div>
+              <h3>长期 <span>Longevity</span></h3>
+              <p>不追风口，不出风头，只有润物无声的滋养和随风入夜的点滴进步。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 03 成员 ================= -->
+  <section class="section" id="members">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="section__num">03</span>
+        <h2 class="section__title">成员</h2>
+        <span class="section__en">Members</span>
+      </div>
+      <div class="grid">
+        <p class="members__note" data-reveal="">
+          十一个人，组成了我们的班委会。<br/>
+          点击成员照片，可以查看他/她的简介。
+          <br/><br/>
+          <span style="color:var(--ink-3)">我们相信：一支团队的气质，藏在每个人的说话和工作方式里。</span>
+        </p>
+
+        <div class="members__grid">
+
+          <!-- 成员 01 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 王梓群 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5">
+                <img src="王梓群.jpg" alt="王梓群" loading="lazy" decoding="async">
+              </span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">王梓群</h3>
+              <p class="member__role">班长 / 总体班级工作</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>大家好，我是王梓群，来自山东青岛，本人乐观开朗，善于沟通和倾听，做事比较认真负责，希望未来遇见更好的自己，也结识志同道合的伙伴！</p>
+              <p>微信联系：AZSUN666</p>
+            </div>
+          </article>
+
+          <!-- 成员 02 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 张诗婷 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5"></span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">张诗婷</h3>
+              <p class="member__role">团支书 / 团的工作</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>临时占位1。</p>
+              <p>临时占位2。</p>
+            </div>
+          </article>
+
+          <!-- 成员 03 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 肖梦研 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5"></span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">肖梦研</h3>
+              <p class="member__role">学习委员 / 班级学习工作</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>临时占位1。</p>
+              <p>临时占位2。</p>
+            </div>
+          </article>
+
+          <!-- 成员 04 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 王子健 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5">
+                <img src="王子健.jpg" alt="王子健" loading="lazy" decoding="async">
+              </span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">王子健</h3>
+              <p class="member__role">文体委员 / 班级文体活动策划</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>中国万岁，人民万岁。</p>
+              <p>微信联系：wzj3523。</p>
+            </div>
+          </article>
+
+          <!-- 成员 05 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 武小雅 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5"></span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">武小雅</h3>
+              <p class="member__role">安全委员 / 安全保障</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>临时占位1。</p>
+              <p>临时占位2”。</p>
+            </div>
+          </article>
+
+          <!-- 成员 06 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 李远飏 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5">
+                <img src="李远飏.jpg" alt="李远飏" loading="lazy" decoding="async">
+              </span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">李远飏</h3>
+              <p class="member__role">组织委员 / 班级组织建构</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>大家好，我是李远飏，现任班级组织委员。白羊座的我热情开朗，爱好主持、摄影、烹饪。很高兴认识大家，期待与大家一起度过开心的时光！</p>
+              <p>微信联系：Lyy08020414</p>
+            </div>
+          </article>
+
+          <!-- 成员 07 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 张加强 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5">
+                <img src="张加强.jpg" alt="张加强" loading="lazy" decoding="async">
+              </span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">张加强</h3>
+              <p class="member__role">心理委员 / 同学心理问题疏解</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>心有山海，静而无边。以热忱赴前路，以坚韧抵风雨，守本心，怀善意，步履不停，终遇光。</p>
+              <p>微信联系：qiang504404027”</p>
+            </div>
+          </article>
+
+          <!-- 成员 08 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 王曦 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5"></span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">王曦</h3>
+              <p class="member__role">生活委员 / 生活指导</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>临时占位。</p>
+              <p>临时占位。”</p>
+            </div>
+          </article>
+
+          <!-- 成员 09 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 吴文硕 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5"></span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">吴文硕</h3>
+              <p class="member__role">心理委员 / 心理问题疏解</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>临时占位。</p>
+              <p>临时占位。</p>
+            </div>
+          </article>
+
+          <!-- 成员 10 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 彭雅琳 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5"></span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">彭雅琳</h3>
+              <p class="member__role">科技委员 / 科技活动与竞赛组织</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>临时占位。</p>
+              <p>临时占位。</p>
+            </div>
+          </article>
+
+          <!-- 成员 11 -->
+          <article class="member" data-reveal="">
+            <button class="member__hit" type="button" aria-label="查看 杨子青 的简介">
+              <span class="media" data-ratio="4/5" data-label="成员照片 · 4:5">
+                <img src="杨子青.jpg" alt="杨子青" loading="lazy" decoding="async">
+              </span>
+              <span class="member__hint" aria-hidden="true">＋</span>
+            </button>
+            <div class="member__meta">
+              <h3 class="member__name">杨子青</h3>
+              <p class="member__role">宣传委员 / 团宣工作</p>
+            </div>
+            <div class="member__bio" hidden="">
+              <p>大家好，我是杨子青，来自山东济宁，爱好朗诵、数码、摄影，在未来的学习和生活中，我希望与大家互相学习，共同进步，也期待认识更多志同道合的朋友。</p>
+              <p>微信联系：yisun826</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 04 风采 ================= -->
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="section__num">04</span>
+        <h2 class="section__title">风采</h2>
+        <span class="section__en">Gallery</span>
+      </div>
+      <div class="gallery">
+        <figure class="gal gal--wide" data-reveal="">
+          <div class="media" data-ratio="4/3" data-label="合影 · 4:3">
+            <img src="班级合照.jpg" alt="法261-2班级合影" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="gal__cap"><span>01</span><span>合影</span></figcaption>
+        </figure>
+        <figure class="gal gal--tall" data-reveal="">
+          <div class="media" data-ratio="3/2" data-label="辩论赛现场 · 3:2">
+            <img src="辩论赛现场.jpg" alt="文康杯辩论赛现场" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="gal__cap"><span>02</span><span>比赛</span></figcaption>
+        </figure>
+        <figure class="gal" data-reveal="">
+          <div class="media" data-ratio="3/4" data-label="辩论赛 · 3:4">
+            <img src="辩论赛.jpg" alt="辩论赛现场记录" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="gal__cap"><span>03</span><span>辩论赛</span></figcaption>
+        </figure>
+        <figure class="gal" data-reveal="">
+          <div class="media" data-ratio="4/3" data-label="集体奖状 · 4:3">
+            <img src="跳绳集体奖状.jpg" alt="跳大绳比赛集体三等奖证书" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="gal__cap"><span>04</span><span>集体奖状</span></figcaption>
+        </figure>
+        <figure class="gal" data-reveal="">
+          <div class="media" data-ratio="4/3" data-label="轮流奖状 · 4:3">
+            <img src="跳绳轮流奖状.jpg" alt="跳大绳比赛优秀奖证书" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="gal__cap"><span>05</span><span>轮流奖状</span></figcaption>
+        </figure>
+        <figure class="gal gal--full" data-reveal="">
+          <div class="media" data-ratio="16/9" data-label="现场 · 16:9">
+            <img src="现场.jpg" alt="跳绳比赛现场" loading="lazy" decoding="async">
+          </div>
+          <figcaption class="gal__cap"><span>06</span><span>现场</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 05 奖项 ================= -->
+  <section class="section" id="awards">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="section__num">05</span>
+        <h2 class="section__title">奖项</h2>
+        <span class="section__en">Awards</span>
+      </div>
+      <div class="grid">
+        <div class="awards">
+          <!-- 示例内容。
+               证书图片接口：在每个 .award__cert 的 .media 里插入
+               <img src="assets/award-01.jpg" alt="获奖证书"> 即可；
+               点击缩略图会以弹窗放大查看（不裁切）。 -->
+          <div class="award" data-reveal="">
+            <span class="award__year">2026</span>
+            <span class="award__name">“绳牵弘毅，跃逐锋芒”跳大绳比赛</span>
+            <span class="award__org">集体同步跳项目</span>
+            <span class="award__tag">三等奖</span>
+            <button class="award__cert" type="button" aria-label="查看证书图片">
+              <span class="media" data-ratio="4/3" data-label="证书图片"><img src="跳绳集体奖状.jpg" alt="跳大绳比赛集体同步跳三等奖证书" loading="lazy" decoding="async"></span>
+              <span class="zoom" aria-hidden="true">＋</span>
+            </button>
+          </div>
+          <div class="award" data-reveal="">
+            <span class="award__year">2026</span>
+            <span class="award__name">“绳牵弘毅，跃逐锋芒”跳大绳比赛</span>
+            <span class="award__org">接力起跳项目</span>
+            <span class="award__tag">优秀奖</span>
+            <button class="award__cert" type="button" aria-label="查看证书图片">
+              <span class="media" data-ratio="4/3" data-label="证书图片"><img src="跳绳轮流奖状.jpg" alt="跳大绳比赛接力起跳优秀奖证书" loading="lazy" decoding="async"></span>
+              <span class="zoom" aria-hidden="true">＋</span>
+            </button>
+          </div>
+          <div class="award" data-reveal="">
+            <span class="award__year">2026</span>
+            <span class="award__name">奖项占位3</span>
+            <span class="award__org">分类占位3</span>
+            <span class="award__tag">等次占位3</span>
+            <button class="award__cert" type="button" aria-label="查看证书图片">
+              <span class="media" data-ratio="4/3" data-label="证书图片"></span>
+              <span class="zoom" aria-hidden="true">＋</span>
+            </button>
+          </div>
+          <div class="award" data-reveal="">
+            <span class="award__year">2026</span>
+            <span class="award__name">奖项占位4</span>
+            <span class="award__org">分类占位4</span>
+            <span class="award__tag">等次占位4</span>
+            <button class="award__cert" type="button" aria-label="查看证书图片">
+              <span class="media" data-ratio="4/3" data-label="证书图片"></span>
+              <span class="zoom" aria-hidden="true">＋</span>
+            </button>
+          </div>
+          <div class="award" data-reveal="">
+            <span class="award__year">2026</span>
+            <span class="award__name">奖项占位5</span>
+            <span class="award__org">分类占位5</span>
+            <span class="award__tag">等次占位5</span>
+            <button class="award__cert" type="button" aria-label="查看证书图片">
+              <span class="media" data-ratio="4/3" data-label="证书图片"></span>
+              <span class="zoom" aria-hidden="true">＋</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 06 动态（附加栏目） ================= -->
+  <section class="section" id="journal">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="section__num">06</span>
+        <h2 class="section__title">动态</h2>
+        <span class="section__en">Journal</span>
+      </div>
+      <div class="grid">
+        <div class="news">
+          <article class="news__item">
+            <h3 class="news__title"><button type="button">法261-2班级官方网站开始运营啦</button></h3>
+            <div class="media news__media" data-ratio="3/2" data-label="班级网站 · 3:2">
+              <img src="班级网站.jpg" alt="法261-2班级官方网站首屏" loading="lazy" decoding="async">
+            </div>
+            <p class="news__desc">以后这里会更新班级最新动态哦</p>
+            <div class="news__detail" hidden="">
+              <p>经过宣传委员与同学们一段时间的筹备，法261-2班级官方网站正式上线啦！网站设有班级简介、成员风采、荣誉奖项、班级动态等栏目，记录我们共同走过的大学时光。</p>
+              <p>未来这里将持续更新班级的大小事务、活动通知与精彩瞬间，欢迎大家常来看看，也欢迎同学们积极投稿，一起把这个"线上班级之家"建设得更好。</p>
+            </div>
+          </article>
+          <article class="news__item">
+            <h3 class="news__title"><button type="button">烟台大学法学院读书分享会顺利举办</button></h3>
+            <div class="news__duo">
+              <div class="media news__media" data-ratio="3/4" data-label="王梓群主持 · 3:4">
+                <img src="王梓群主持.jpg" alt="王梓群主持读书分享会" loading="lazy" decoding="async">
+              </div>
+              <div class="media news__media" data-ratio="3/4" data-label="童佳丽分享 · 3:4">
+                <img src="童佳丽分享.jpg" alt="童佳丽作分享发言" loading="lazy" decoding="async">
+              </div>
+            </div>
+            <p class="news__desc">我班班长王梓群同学任主持人，童佳丽同学代表班级作分享发言</p>
+            <div class="news__detail" hidden="">
+              <p>同学们积极向她们学习，踊跃参与打卡，培养阅读习惯，成就更好自我。</p>
+              <p>也请有意向参与我们班学子文海申报的同学将作品提交给宣传委员，稿件一经采用将收录进班级刊物并在学子文海公众号展示。期待大家的佳作！</p>
+            </div>
+          </article>
+          <article class="news__item">
+            <h3 class="news__title"><button type="button">跳绳比赛圆满收官</button></h3>
+            <div class="media news__media" data-ratio="4/3" data-label="跳绳比赛 · 4:3">
+              <img src="跳绳比赛.jpg" alt="跳绳比赛班级合影" loading="lazy" decoding="async">
+            </div>
+            <p class="news__desc">加油261-2。</p>
+            <div class="news__detail" hidden="">
+              <p>在同学们的热情参与和辛勤训练下，法261-2班在跳绳比赛中取得了集体跳三等奖（第一位）和轮流跳优秀奖的好成绩。</p>
+              <p>希望各位同学在今后的活动中也积极报名、踊跃参与，展现261-2的活力与风采！加油，261-2！</p>
+            </div>
+          </article>
+          <article class="news__item">
+            <h3 class="news__title"><button type="button">班级跑量竞赛跑量超过450公里</button></h3>
+            <div class="media news__media" data-ratio="16/9" data-label="动态图片 · 16:9">
+              <img src="跑量.png" alt="跑量" loading="lazy" decoding="async">
+            </div>
+            <p class="news__desc">欢声笑语中，班级凝聚力up up！</p>
+            <div class="news__detail" hidden="">
+              <p>两周前，在261-2班的组织下，法学院26级跑量竞赛顺利开启。同学们齐心协力、奋勇争先，不断刷新着更优异的成绩。</p>
+              <p>本次活动不仅锻炼了身体，更增进了同学之间的友谊与默契。感谢每一位参与者的热情投入，让我们的班级更加团结、更有活力。</p>
+            </div>
+          </article>
+          <article class="news__item">
+            <h3 class="news__title"><button type="button">李远飏，吴文硕，张力文，童佳丽同学在辩论赛中取得佳绩</button></h3>
+            <div class="media news__media" data-ratio="16/9" data-label="动态图片 · 16:9">
+              <img src="辩论赛.jpg" alt="辩论赛" loading="lazy" decoding="async">
+            </div>
+            <p class="news__desc">争创佳绩，为同学们做出优秀表率。</p>
+            <div class="news__detail" hidden="">
+              <p>经过不懈的努力，持续的付出，李远飏，吴文硕，张力文，童佳丽同学在辩论赛中均取得了优异的成绩，为班级评优树先贡献了自己的力量。</p>
+              <p>也欢迎愿意分享的同学贡献自己的力量。大家一起加油，争取更加优异的成绩！</p>
+            </div>
+          </article>
+          <article class="news__item">
+            <h3 class="news__title"><button type="button">冬雪已至，烟大秋景进入尾声</button></h3>
+            <div class="media news__media" data-ratio="16/9" data-label="动态图片 · 16:9">
+              <img src="秋景.jpg" alt="秋景" loading="lazy" decoding="async">
+            </div>
+            <p class="news__desc">秋天快要结束了，大家留下喜欢的照片了吗？。</p>
+            <div class="news__detail" hidden="">
+              <p>同学们可以在朋友圈里分享自己镜头里的秋天哦。</p>
+              <p>冬天到啦，不要忘记添衣服和坚持打卡哦。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 07 实用信息（美食 / 课表 / 校历） ================= -->
+  <section class="section" id="utility">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="section__num">07</span>
+        <h2 class="section__title">实用信息</h2>
+        <span class="section__en">Practical Info</span>
+      </div>
+
+      <!-- 分段控制器：滑动指示块 -->
+      <div class="util-seg" id="utilSeg" role="tablist" aria-label="实用信息分类">
+        <span class="util-seg__thumb" aria-hidden="true"></span>
+        <button class="util-seg__btn is-active" type="button" role="tab" aria-selected="true" data-panel="schedule">班级课表</button>
+        <button class="util-seg__btn" type="button" role="tab" aria-selected="false" data-panel="food">周边美食</button>
+        <button class="util-seg__btn" type="button" role="tab" aria-selected="false" data-panel="calendar">学年校历</button>
+      </div>
+
+      <!-- 面板 1：课表 -->
+      <div class="util-panel is-active" id="panel-schedule" data-panel="schedule" role="tabpanel">
+        <div class="tt__bar">
+          <span class="tt__hint">2026–2027 学年第一学期 · 点击课程查看详情</span>
+          <div class="tt__legend" id="ttLegend"></div>
+        </div>
+        <div class="tt-wrap">
+          <div class="tt" id="ttGrid" role="table" aria-label="法261-2班班级课表"></div>
+        </div>
+        <p class="tt__note" data-reveal="">
+          课表根据教务系统选课结果整理，实际安排以学校通知为准。带 <b>单</b> / <b>双</b> 字样的课程按单双周上课；教师姓名后的 * 为该课程课序号标记。
+        </p>
+      </div>
+
+      <!-- 面板 2：美食 -->
+      <div class="util-panel" id="panel-food" data-panel="food" role="tabpanel">
+        <p class="food__lead">
+          这一板块整理了同学们常去的店与私藏吃法。<b>按照场景分类</b>，点击标签可查看备注，信源来自宪法宣讲团宣传部，实际营业情况以商家为准。
+        </p>
+        <div class="food-grid" id="foodGrid">
+          <!-- 由 JS 按分类渲染 -->
+        </div>
+      </div>
+
+      <!-- 面板 3：校历 -->
+      <div class="util-panel" id="panel-calendar" data-panel="calendar" role="tabpanel">
+        <!-- 分段控制器：学期切换 -->
+        <div class="seg" role="tablist" aria-label="选择学期">
+          <span class="seg__thumb" aria-hidden="true"></span>
+          <button class="seg__btn is-active" type="button" role="tab" aria-selected="true" data-term="t1">第一学期</button>
+          <button class="seg__btn" type="button" role="tab" aria-selected="false" data-term="t2">第二学期</button>
+        </div>
+
+        <div class="cal-views">
+          <!-- 两个学期面板由 JS 填充 -->
+          <div class="cal-panel is-active" id="calPanel" role="tabpanel"></div>
+        </div>
+
+        <p class="cal__note" data-reveal="">
+          根据烟台大学 2026–2027 学年校历整理，<b class="cal__dot cal__dot--exam"></b> 标记为期末考试周，<b class="cal__dot cal__dot--event"></b> 为重要活动。实际安排以学校通知为准。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 左侧纵向悬浮导航（各板块跳转 + 实用信息三个功能区切换） -->
+  <nav class="side-dock" id="sideDock" aria-label="页面快捷导航">
+    <!-- 选中滑动指示块（JS 跟随当前选中项移动） -->
+    <span class="side-dock__thumb side-dock__thumb--nav" aria-hidden="true"></span>
+    <!-- 板块跳转 -->
+    <button class="side-dock__nav is-active" type="button" data-target="about" aria-label="简介">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      <span class="side-dock__label">简介</span>
+    </button>
+    <button class="side-dock__nav" type="button" data-target="creed" aria-label="宗旨">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.7 5.5 6 0.9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6-4.3-4.2 6-0.9z"/></svg>
+      <span class="side-dock__label">宗旨</span>
+    </button>
+    <button class="side-dock__nav" type="button" data-target="members" aria-label="成员">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.2a3 3 0 0 1 0 5.6M18 14.5c1.8.9 3 2.7 3 4.8"/></svg>
+      <span class="side-dock__label">成员</span>
+    </button>
+    <button class="side-dock__nav" type="button" data-target="gallery" aria-label="风采">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5L5 20"/></svg>
+      <span class="side-dock__label">风采</span>
+    </button>
+    <button class="side-dock__nav" type="button" data-target="awards" aria-label="奖项">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-2.5L17 22l-1.5-8"/></svg>
+      <span class="side-dock__label">奖项</span>
+    </button>
+    <button class="side-dock__nav" type="button" data-target="journal" aria-label="动态">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+      <span class="side-dock__label">动态</span>
+    </button>
+    <button class="side-dock__nav" type="button" data-target="utility" aria-label="实用信息">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span class="side-dock__label">实用信息</span>
+    </button>
+    <!-- 实用信息功能区切换：在"实用信息"与"联络"之间展开 -->
+    <span class="side-dock__util">
+      <span class="side-dock__thumb side-dock__thumb--util" aria-hidden="true"></span>
+      <span class="side-dock__sep" aria-hidden="true"></span>
+      <button class="side-dock__btn is-active" type="button" data-panel="schedule" aria-label="班级课表">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3M8 18h3"/></svg>
+        <span class="side-dock__label">班级课表</span>
+      </button>
+      <button class="side-dock__btn" type="button" data-panel="food" aria-label="周边美食">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v7a3 3 0 0 0 6 0V3M7 3v18M17 3c-2 2-2.5 5-2.5 9h5C19.5 8 19 5 17 3zM17 12v9"/></svg>
+        <span class="side-dock__label">周边美食</span>
+      </button>
+      <button class="side-dock__btn" type="button" data-panel="calendar" aria-label="学年校历">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M7 3v4M17 3v4"/><path d="M8 14l2 2 4-4"/></svg>
+        <span class="side-dock__label">学年校历</span>
+      </button>
+    </span>
+
+    <button class="side-dock__nav" type="button" data-target="contact" aria-label="联络">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      <span class="side-dock__label">联络</span>
+    </button>
+  </nav>
+
+  <!-- ================= 08 联系（附加栏目） ================= -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="section__num">08</span>
+        <h2 class="section__title">联络</h2>
+        <span class="section__en">Contact</span>
+      </div>
+      <div class="grid">
+        <p class="contact__big" data-reveal="">
+          有想做的事？<br/>
+          写信给 <a href="yisun826@outlook.com">yisun826@outlook.com</a>
+        </p>
+        <dl class="contact__side" data-reveal="">
+          <dt>Studio</dt>
+          <dd>烟台大学南区<br/>9 号楼 2 层</dd>
+          <dt>Enquiry</dt>
+          <dd>yisun828@outlook.com<br/>+86 182 6687 6957</dd>
+          <dt>Follow</dt>
+          <dd>酷安：苡穗 / 小红书：苡穗 / bilibili：苡穗new</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <strong style="color:var(--ink);font-size:14px;letter-spacing:.06em;">法261-2班</strong><br/>
+       明法笃行，向阳而生。<br/>
+      Since 2026 · YTU
+    </div>
+    <div class="foot-col">
+      <h4>栏目</h4>
+      <a href="#about">简介</a>
+      <a href="#creed">宗旨</a>
+      <a href="#members">成员</a>
+    </div>
+    <div class="foot-col">
+      <h4>更多</h4>
+      <a href="#gallery">风采</a>
+      <a href="#awards">奖项</a>
+      <a href="#journal">动态</a>
+      <a href="#utility">实用信息</a>
+    </div>
+    <div class="foot-col">
+      <h4>联络</h4>
+      <a href="mailto:hello@example.com">Email</a>
+      <a href="#contact">到访</a>
+      <a href="#top">回到顶部</a>
+    </div>
+    <div class="foot-legal">
+      <span>© <span id="year">2026</span> 苡穗（杨子青） · 保留所有权利</span>
+      <span>法261-2班宣传委员制作</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= 成员简介弹窗 ================= -->
+<div class="modal" id="memberModal" role="dialog" aria-modal="true" aria-labelledby="mName" aria-hidden="true">
+  <div class="modal__veil" data-close=""></div>
+  <div class="modal__panel" role="document">
+    <button class="modal__close" type="button" data-close="" aria-label="关闭简介">
+      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <div class="modal__media media" id="mMedia" data-label="成员照片"></div>
+    <div class="modal__body">
+      <p class="modal__eyebrow">成员 / Member</p>
+      <h3 class="modal__name" id="mName">—</h3>
+      <p class="modal__role" id="mRole"></p>
+      <div class="modal__bio" id="mBio"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 证书放大弹窗 ================= -->
+<div class="modal" id="certModal" role="dialog" aria-modal="true" aria-labelledby="cTitle" aria-hidden="true">
+  <div class="modal__veil" data-close=""></div>
+  <div class="lightbox__panel" role="document">
+    <button class="modal__close" type="button" data-close="" aria-label="关闭证书">
+      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <div class="media" id="cMedia" data-ratio="4/3" data-label="证书图片"></div>
+    <p class="lightbox__cap"><b id="cTitle">—</b><span id="cYear"></span><span class="t" id="cTag"></span></p>
+  </div>
+</div>
+
+<!-- ================= 动态详情弹窗 ================= -->
+<div class="modal" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="nTitle" aria-hidden="true">
+  <div class="modal__veil" data-close=""></div>
+  <div class="modal__panel modal__panel--text" role="document">
+    <button class="modal__close" type="button" data-close="" aria-label="关闭详情">
+      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <div class="media modal__media news__modal-media" id="nMedia" data-ratio="16/9" data-label="动态图片" hidden=""></div>
+    <div class="modal__body">
+      <p class="modal__eyebrow">动态 / Journal</p>
+      <h3 class="modal__name" id="nTitle">—</h3>
+      <div class="modal__bio" id="nBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 课程详情弹窗 ================= -->
+<div class="modal" id="ttModal" role="dialog" aria-modal="true" aria-labelledby="ttName" aria-hidden="true">
+  <div class="modal__veil" data-close=""></div>
+  <div class="modal__panel modal__panel--text" role="document">
+    <button class="modal__close" type="button" data-close="" aria-label="关闭详情">
+      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path>
+      </svg>
+    </button>
+    <div class="modal__body">
+      <p class="modal__eyebrow">课程详情 / Course</p>
+      <div class="tt__detail-top">
+        <h3 class="modal__name" id="ttName" style="font-size:clamp(21px,2.4vw,28px)">—</h3>
+        <span class="tt__tag" id="ttDay"></span>
+      </div>
+      <dl class="tt__grid" id="ttInfo"></dl>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 导员照片弹窗（班徽连击彩蛋） ================= -->
+<div class="modal" id="counselorModal" role="dialog" aria-modal="true" aria-labelledby="counselorCap" aria-hidden="true">
+  <div class="modal__veil" data-close=""></div>
+  <div class="counselor__panel" role="document">
+    <button class="modal__close counselor__close" id="counselorClose" type="button" data-close="" aria-label="关闭照片">
+      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"></path>
+      </svg>
+      <span class="counselor__count" id="counselorCount" aria-hidden="true"></span>
+    </button>
+    <img class="counselor__img" src="导员.jpg" alt="导员曹振国的照片">
+    <p class="counselor__cap" id="counselorCap">恭喜发现彩蛋 · <b>导员曹振国</b></p>
+  </div>
+</div>
+
+<!-- 连击提示 -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* 1. 按 data-ratio 设置占位框比例（4/5、1/1、21/9 等） */
+  document.querySelectorAll('.media[data-ratio]').forEach(function (el) {
+    el.style.aspectRatio = el.dataset.ratio;
+  });
+
+  /* 2. 页头滚动状态 */
+  var header = document.querySelector('.site-header');
+  var onScroll = function () {
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* 3. 进场动画 */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+  var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    reveals.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 4, 3) * 60 + 'ms';
+      io.observe(el);
+    });
+  }
+
+  /* 4. 导航高亮 */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  if ('IntersectionObserver' in window) {
+    var navIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var idx = sections.indexOf(entry.target);
+        if (idx < 0) return;
+        links.forEach(function (a) { a.classList.remove('is-current'); });
+        links[idx].classList.add('is-current');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function (s) { if (s) navIO.observe(s); });
+  }
+
+  /* 5. 弹窗：成员简介 + 证书放大（共用一套开合与无障碍逻辑） */
+  var mModal = document.getElementById('memberModal');
+  var cModal = document.getElementById('certModal');
+  var nModal = document.getElementById('newsModal');
+  var ttModal = document.getElementById('ttModal');
+  var counselorModal = document.getElementById('counselorModal');
+  var dialogs = [mModal, cModal, nModal, ttModal, counselorModal];
+  var mMedia = document.getElementById('mMedia');
+  var mName = document.getElementById('mName');
+  var mRole = document.getElementById('mRole');
+  var mBio = document.getElementById('mBio');
+  var cMedia = document.getElementById('cMedia');
+  var cTitle = document.getElementById('cTitle');
+  var cYear = document.getElementById('cYear');
+  var cTag = document.getElementById('cTag');
+  var nTitle = document.getElementById('nTitle');
+  var nBody = document.getElementById('nBody');
+  var nMedia = document.getElementById('nMedia');
+  var counselorClose = document.getElementById('counselorClose');
+  var counselorCount = document.getElementById('counselorCount');
+  var counselorLocked = false;
+  var counselorTimer = null;
+  var lastFocus = null;
+
+  // 把源占位框里的图片克隆到弹窗占位框；没有图片则保留占位文字
+  // 支持传入图片数组 sources：多张图时并排显示（如读书分享会双图）
+  function fillMedia(target, sources, fallbackLabel) {
+    var list = Array.isArray(sources) ? sources : [sources];
+    var imgs = [];
+    list.forEach(function (source) {
+      if (!source) return;
+      var img = source.querySelector ? source.querySelector('img') : null;
+      if (img) imgs.push(img);
+    });
+    target.classList.remove('is-duo');
+    target.innerHTML = '';
+    if (imgs.length) {
+      imgs.forEach(function (img) {
+        var clone = document.createElement('img');
+        clone.src = img.currentSrc || img.src;
+        clone.alt = img.alt || '';
+        target.appendChild(clone);
+      });
+      if (imgs.length > 1) target.classList.add('is-duo');
+      target.setAttribute('data-label', '');
+    } else {
+      var labelSource = list[0];
+      target.setAttribute('data-label', (labelSource && labelSource.getAttribute && labelSource.getAttribute('data-label')) || fallbackLabel);
+    }
+  }
+
+  // 导员弹窗：弹出后 10 秒内锁定，不能关闭
+  function startCountdown() {
+    window.clearInterval(counselorTimer);
+    counselorLocked = true;
+    counselorClose.classList.add('is-locked');
+    counselorClose.setAttribute('aria-label', '倒计时中，请稍候');
+    var left = 10;
+    counselorCount.textContent = left;
+    counselorTimer = window.setInterval(function () {
+      left--;
+      if (left <= 0) {
+        window.clearInterval(counselorTimer);
+        counselorLocked = false;
+        counselorClose.classList.remove('is-locked');
+        counselorClose.setAttribute('aria-label', '关闭照片');
+        counselorCount.textContent = '';
+      } else {
+        counselorCount.textContent = left;
+      }
+    }, 1000);
+  }
+
+  function openDialog(dialog, trigger) {
+    lastFocus = trigger || document.activeElement;
+    dialog.classList.add('is-open');
+    dialog.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('is-locked');
+    var btn = dialog.querySelector('.modal__close');
+    window.setTimeout(function () { if (btn) btn.focus(); }, 60);
+    if (dialog === counselorModal) startCountdown();
+  }
+
+  function closeDialog(dialog) {
+    if (dialog === counselorModal && counselorLocked) return;
+    dialog.classList.remove('is-open');
+    dialog.setAttribute('aria-hidden', 'true');
+    if (!dialogs.some(function (d) { return d.classList.contains('is-open'); })) {
+      document.body.classList.remove('is-locked');
+    }
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  /* 成员卡片 → 简介弹窗 */
+  document.querySelectorAll('.member').forEach(function (card) {
+    var hit = card.querySelector('.member__hit');
+    hit.addEventListener('click', function () {
+      fillMedia(mMedia, card.querySelector('.media'), '成员照片');
+      mName.textContent = card.querySelector('.member__name').textContent.trim();
+      mRole.textContent = card.querySelector('.member__role').textContent.trim();
+      mBio.innerHTML = card.querySelector('.member__bio').innerHTML;
+      openDialog(mModal, hit);
+    });
+  });
+
+  /* 证书缩略图 → 放大弹窗 */
+  document.querySelectorAll('.award__cert').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var row = btn.parentNode;
+      fillMedia(cMedia, btn.querySelector('.media'), '证书图片');
+      cTitle.textContent = row.querySelector('.award__name').textContent.trim();
+      cYear.textContent = row.querySelector('.award__year').textContent.trim();
+      cTag.textContent = row.querySelector('.award__tag').textContent.trim();
+      openDialog(cModal, btn);
+    });
+  });
+
+  /* 动态标题 → 详情弹窗（有图时把缩略图克隆到大图位） */
+  document.querySelectorAll('.news__title button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.news__item');
+      nTitle.textContent = btn.textContent.trim();
+      nBody.innerHTML = item.querySelector('.news__detail').innerHTML;
+      var duo = item.querySelector('.news__duo');
+      var media = duo ? duo.querySelectorAll('.news__media') : [item.querySelector('.news__media')].filter(Boolean);
+      if (media.length && Array.prototype.some.call(media, function (m) { return m.querySelector('img'); })) {
+        fillMedia(nMedia, Array.prototype.slice.call(media), '动态图片');
+        nMedia.hidden = false;
+      } else {
+        nMedia.hidden = true;
+      }
+      openDialog(nModal, btn);
+    });
+  });
+
+  /* 6.5 实用信息：周边美食 + 三栏面板切换（顶部分段控制器 ↔ 左侧悬浮导航） */
+  var FOOD_GROUPS = [
+    {
+      name: '正餐及聚餐', en: 'Dining', cls: '',
+      tip: '聚餐推荐：湘盛园；约会可选烤肉、烤鱼',
+      items: [
+        { n: '大叹号烤肉' }, { n: '绿茶' }, { n: '米村' }, { n: '薏匠手作披萨' },
+        { n: '莲钰汤饭' }, { n: '狼山鸣火锅鸡' }, { n: '欢喜馄饨铺' }, { n: '喜家德水饺' },
+        { n: '李若桃' }, { n: '吕氏疙瘩汤' }, { n: '湘盛园', pick: true }, { n: '小湘公' },
+        { n: '醉得意' }, { n: '鱼酷' }, { n: '肆季饭屋' }, { n: '溯和fufu' }
+      ]
+    },
+    {
+      name: '一人食简餐', en: 'Solo', cls: 'food-card--sage',
+      tip: '蹦蹦鸟居酒屋中午有寿喜锅一人食',
+      items: [
+        { n: '蹦蹦鸟居酒屋', note: '中午寿喜锅' }, { n: '包子客小胡同', note: '平价烧鸟' },
+        { n: '牛肋排饭', note: '肆季饭屋' }, { n: '一人食汤饭', note: '肆季饭屋' },
+        { n: '馄饨' }, { n: '疙瘩汤' }, { n: '披萨' }
+      ]
+    },
+    {
+      name: '甜品及饮品', en: 'Dessert', cls: 'food-card--deep',
+      tip: '粉卟卟的苹果气泡水“最夯”',
+      items: [
+        { n: '喜茶' }, { n: '乐乐茶' }, { n: 'DQ' }, { n: '老挝咖啡' },
+        { n: '粉卟卟', note: '苹果气泡水' }, { n: '弘祥大麻花', note: '黄油年糕' },
+        { n: 'gala甜品' }, { n: '酸奶泥' }, { n: '熹禾蛋挞' }, { n: '两元面包' }
+      ]
+    },
+    {
+      name: '烟大小吃街', en: 'Street Food', cls: 'food-card--ink',
+      tip: '大鸡柳和臭豆腐，再配一杯烧仙草',
+      items: [
+        { n: '奶酪麻糍' }, { n: '奶酪炸猪排', note: '略不入味' }, { n: '大鸡柳' },
+        { n: '炸鸡馍', note: '幸运咖对面' }, { n: '饭团' }, { n: '卷凉皮' },
+        { n: '大里脊肉饼', note: '十元一个' }, { n: '硕士生煎' },
+        { n: '车轮饼' }, { n: '云吞拌面' }, { n: '鸡蛋饼' }, { n: '鸡蛋仔' },
+        { n: '涮冷面' }, { n: '辣子鸡面' }, { n: '钵钵鸡' }, { n: '台湾烤肠' },
+        { n: '手打虾滑' }, { n: '烤串' }, { n: '宋家族亭' }, { n: '博多纯情' },
+        { n: '高丽亚炸酱面' }, { n: '花甲粉' }, { n: '岩烧乳酪吐司' },
+        { n: '火爆大鱿鱼' }, { n: '锅巴土豆' }, { n: '临瑜炸鸡腿' }, { n: '冷面卷臭豆腐' }
+      ]
+    }
+  ];
+
+  function renderFood() {
+    var grid = document.getElementById('foodGrid');
+    if (!grid) return;
+    FOOD_GROUPS.forEach(function (g) {
+      var card = document.createElement('div');
+      card.className = 'food-card ' + (g.cls || '');
+      var head = document.createElement('div');
+      head.className = 'food-card__head';
+      var name = document.createElement('span');
+      name.className = 'food-card__name';
+      name.textContent = g.name;
+      var en = document.createElement('span');
+      en.className = 'food-card__en';
+      en.textContent = g.en;
+      head.appendChild(name);
+      head.appendChild(en);
+      card.appendChild(head);
+      if (g.tip) {
+        var tip = document.createElement('div');
+        tip.className = 'food-card__tip';
+        tip.textContent = '✦ ' + g.tip;
+        card.appendChild(tip);
+      }
+      var tags = document.createElement('div');
+      tags.className = 'food-tags';
+      tags.style.marginTop = '12px';
+      g.items.forEach(function (it) {
+        var tag = document.createElement('span');
+        tag.className = 'food-tag' + (it.pick ? ' food-tag--pick' : '');
+        tag.title = (it.note || '') + (it.pick ? '（同学推荐）' : '');
+        var b = document.createElement('b');
+        b.textContent = it.n;
+        tag.appendChild(b);
+        if (it.note) {
+          var small = document.createElement('small');
+          small.textContent = '· ' + it.note;
+          tag.appendChild(small);
+        }
+        tags.appendChild(tag);
+      });
+      card.appendChild(tags);
+      grid.appendChild(card);
+    });
+    var pairing = document.createElement('div');
+    pairing.className = 'food-pairing';
+    pairing.innerHTML = '<span class="food-pairing__label">搭配参考</span>' +
+      '<span class="food-pairing__body"><b>大鸡柳、臭豆腐、烧仙草</b>　·　一人食可选 <b>蹦蹦鸟居酒屋</b> 的寿喜锅或 <b>肆季饭屋</b> 的牛肋排饭　·　饮品首推 <b>粉卟卟</b> 苹果气泡水</span>';
+    grid.appendChild(pairing);
+  }
+  renderFood();
+
+  /* 三栏面板切换：顶部分段控制器 + 左侧悬浮导航联动 */
+  var utilSeg = document.getElementById('utilSeg');
+  var sideDock = document.getElementById('sideDock');
+  var utilPanels = Array.prototype.slice.call(document.querySelectorAll('.util-panel'));
+  var utilBtns = Array.prototype.slice.call(document.querySelectorAll('.util-seg__btn, .side-dock__btn'));
+  function switchPanel(key) {
+    utilSeg.setAttribute('data-active', key);
+    utilPanels.forEach(function (p) { p.classList.toggle('is-active', p.dataset.panel === key); });
+    utilBtns.forEach(function (b) {
+      var on = b.dataset.panel === key;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  utilBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () { switchPanel(btn.dataset.panel); });
+  });
+  switchPanel('schedule');
+
+  /* 悬浮导航：板块跳转按钮 —— 点击平滑滚动到对应板块 */
+  var dockNavBtns = Array.prototype.slice.call(document.querySelectorAll('.side-dock__nav'));
+  dockNavBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = document.getElementById(btn.getAttribute('data-target'));
+      if (!target) return;
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+  /* 板块跳转按钮高亮：跟随滚动，与顶部导航一致 */
+  if ('IntersectionObserver' in window) {
+    var dockNavTargets = dockNavBtns.map(function (b) { return document.getElementById(b.getAttribute('data-target')); });
+    var dockNavIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var idx = dockNavTargets.indexOf(entry.target);
+        if (idx < 0) return;
+        dockNavBtns.forEach(function (b) { b.classList.remove('is-active'); });
+        dockNavBtns[idx].classList.add('is-active');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    dockNavTargets.forEach(function (s) { if (s) dockNavIO.observe(s); });
+  }
+  /* 悬浮导航：选中滑动指示块 —— 跟随当前 active 按钮平滑移动 */
+  var navThumb = sideDock ? sideDock.querySelector('.side-dock__thumb--nav') : null;
+  var utilThumb = sideDock ? sideDock.querySelector('.side-dock__thumb--util') : null;
+
+  // 用布局坐标(offset)而非 getBoundingClientRect 定位，避免 transform 动画中间态干扰。
+  // util 滑块放进弹出面板内部、与按钮同一容器内，坐标累加到各自容器即可，
+  // 这样滑块随面板的 translate/scale 一起变换，永远和按钮对齐。
+  function offsetIn(el, container) {
+    var x = 0, y = 0, node = el;
+    while (node && node !== container) { x += node.offsetLeft; y += node.offsetTop; node = node.offsetParent; }
+    return { x: x, y: y };
+  }
+  var utilPanel = sideDock ? sideDock.querySelector('.side-dock__util') : null;
+  function placeThumb(thumb, btn, container) {
+    if (!thumb) return;
+    if (!btn) { thumb.classList.remove('is-visible'); return; }
+    var p = offsetIn(btn, container);
+    thumb.style.width = btn.offsetWidth + 'px';
+    thumb.style.height = btn.offsetHeight + 'px';
+    thumb.style.transform = 'translate3d(' + p.x + 'px,' + p.y + 'px,0)';
+    thumb.classList.add('is-visible');
+  }
+
+  function syncDockThumbs() {
+    if (!sideDock) return;
+    // 拓展栏对齐到「实用信息」按钮：桌面端按纵向中心(top)，手机端按横向中心(left)。
+    // 用布局坐标(offset)计算，不受 transform 影响；扩展栏是绝对定位不占流，位置稳定。
+    var utilityNav = sideDock.querySelector('.side-dock__nav[data-target="utility"]');
+    if (utilityNav) {
+      var up = offsetIn(utilityNav, sideDock);
+      sideDock.style.setProperty('--util-align-y', (up.y + utilityNav.offsetHeight / 2) + 'px');
+      sideDock.style.setProperty('--util-align-x', (up.x + utilityNav.offsetWidth / 2) + 'px');
+    }
+    var activeNav = sideDock.querySelector('.side-dock__nav.is-active');
+    // 底栏扩展只跟随当前选中的导航项：选中"实用信息"才展开，
+    // 从其上方的项目滑到下方的项目（如联络）时自动收起，不再按板块是否在视口判断。
+    var utilityActive = !!activeNav && activeNav.getAttribute('data-target') === 'utility';
+    sideDock.classList.toggle('is-util', utilityActive);
+    placeThumb(navThumb, activeNav, sideDock);
+    placeThumb(utilThumb, utilityActive ? sideDock.querySelector('.side-dock__btn.is-active') : null, utilPanel);
+    sideDock.classList.add('is-sliding');
+  }
+  function syncSoon() { window.requestAnimationFrame(function () { window.requestAnimationFrame(syncDockThumbs); }); }
+
+  // 选中态变化的各入口都同步滑块
+  utilBtns.forEach(function (b) { b.addEventListener('click', syncSoon); });
+  dockNavBtns.forEach(function (b) { b.addEventListener('click', syncSoon); });
+  // nav 高亮由滚动 IntersectionObserver 触发，监听 class 变化
+  if ('MutationObserver' in window) {
+    // 延后一帧同步：IO 回调里会先移除全部 is-active 再给目标加上，
+    // 中间态 active 为空会让滑块/扩展误判，合并到下一帧只处理最终态。
+    var thumbNavObserver = new MutationObserver(syncSoon);
+    dockNavBtns.forEach(function (b) { thumbNavObserver.observe(b, { attributes: true, attributeFilter: ['class'] }); });
+  }
+  window.addEventListener('resize', syncDockThumbs);
+  window.addEventListener('load', syncDockThumbs);
+  syncSoon();
+
+  /* 7. 课表：数据驱动渲染，适配不同屏幕 */
+  var DAYS = ['星期一', '星期二', '星期三', '星期四', '星期五'];
+  var TIMES = [
+    { n: 1, time: '08:00–08:45', label: '第1节' },
+    { n: 2, time: '08:55–09:40', label: '第2节' },
+    { n: 3, time: '10:00–10:45', label: '第3节' },
+    { n: 4, time: '10:55–11:40', label: '第4节' },
+    { n: 5, time: '14:00–14:45', label: '第5节' },
+    { n: 6, time: '14:55–15:40', label: '第6节' },
+    { n: 7, time: '16:00–16:45', label: '第7节' },
+    { n: 8, time: '16:55–17:40', label: '第8节' }
+  ];
+  // 课程类别配色：公共课/专业课/思政课/体育
+  var CAT = {
+    lang:  { color: '#A97C5B', bg: '#F3E9DE', name: '外语课' },
+    major: { color: '#8C6E54', bg: '#EFE4D6', name: '专业课' },
+    politics:{ color: '#8C8E73', bg: '#ECEDE1', name: '思政课' },
+    pe:    { color: '#6E8A8C', bg: '#E2ECEC', name: '体育课' }
+  };
+  // 每门课：名称、教师、周数、节次(起-止)、星期(0-4)、教室、类别
+  var COURSES = [
+    { name: '大学英语Y（1）口语和听力_02', teacher: 'SERGIUS MICHAEL ZARGAROV', weeks: '4–18周', s: 3, e: 4, day: 0, room: '南校区实训楼东区 111', cat: 'lang' },
+    { name: '体育（1-1）_18', teacher: '乔润东', weeks: '4–18周', s: 7, e: 8, day: 0, room: '本校区体育课运动场', cat: 'pe' },
+    { name: '形势与政策_163', teacher: '刘会清', weeks: '12–15周', s: 1, e: 2, day: 1, room: '南校区实训楼东区 313', cat: 'politics' },
+    { name: '民法总论_01', teacher: '尚珍如', weeks: '4–18周', s: 3, e: 4, day: 1, room: '南校区实训楼西区 313', cat: 'major' },
+    { name: '思想道德与法治_17', teacher: '乔雨华', weeks: '4–18周', s: 5, e: 6, day: 1, room: '南校区实训楼东区 313', cat: 'politics' },
+    { name: '大学英语Y（1）_02', teacher: '外教', weeks: '4–18周', s: 1, e: 2, day: 2, room: '南校区实训楼东区 311', cat: 'lang' },
+    { name: '民法总论_01', teacher: '尚珍如', weeks: '4,8,10,12,14,16,18周（单周）', s: 7, e: 8, day: 2, room: '南校区实训楼西区 113', cat: 'major' },
+    { name: '宪法学_01', teacher: '崔雪丽', weeks: '4–18周', s: 1, e: 2, day: 3, room: '南校区实训楼东区 313', cat: 'major' },
+    { name: '大学生心理健康教育_01', teacher: '孙世玉', weeks: '第7周（单周）', s: 5, e: 6, day: 3, room: '南校区实训楼东区 313', cat: 'politics' },
+    { name: '思想道德与法治_17', teacher: '乔雨华', weeks: '4–18周（双周）', s: 5, e: 6, day: 3, room: '南校区实训楼东区 313', cat: 'politics' },
+    { name: '大学英语Y（1）_02', teacher: '外教', weeks: '4–18周', s: 1, e: 2, day: 4, room: '南校区实训楼东区 311', cat: 'lang' },
+    { name: '宪法学_01', teacher: '崔雪丽', weeks: '5–18周（单周）', s: 3, e: 4, day: 4, room: '南校区实训楼西区 313', cat: 'major' },
+    { name: '民法总论_01', teacher: '尚珍如', weeks: '第9周', s: 5, e: 6, day: 4, room: '南校区实训楼西区 213', cat: 'major' },
+    { name: '法学导论（含专业导论）_02', teacher: '程朝阳', weeks: '4–11,13–18周', s: 7, e: 8, day: 4, room: '南校区实训楼东区 113', cat: 'major' }
+  ];
+  var ttGrid = document.getElementById('ttGrid');
+  var ttName = document.getElementById('ttName');
+  var ttDay = document.getElementById('ttDay');
+  var ttInfo = document.getElementById('ttInfo');
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  function renderTimetable() {
+    if (!ttGrid) return;
+    // 表头（第 1 行）
+    var head = el('div', 'tt__cell tt__head', '节次 / 时间');
+    head.style.gridColumn = '1';
+    head.style.gridRow = '1';
+    ttGrid.appendChild(head);
+    DAYS.forEach(function (d, i) {
+      var c = el('div', 'tt__cell tt__head', d);
+      c.style.gridColumn = String(i + 2);
+      c.style.gridRow = '1';
+      ttGrid.appendChild(c);
+    });
+    // 时间列
+    TIMES.forEach(function (t) {
+      var timeCell = el('div', 'tt__cell tt__time');
+      timeCell.style.gridColumn = '1';
+      timeCell.style.gridRow = String(t.n + 1);
+      timeCell.appendChild(el('b', null, t.label));
+      timeCell.appendChild(el('span', null, t.time));
+      ttGrid.appendChild(timeCell);
+    });
+    // 按 (星期, 起节, 止节) 分组：同一时段多门课并排显示
+    var groups = {};
+    COURSES.forEach(function (course) {
+      var key = course.day + '-' + course.s + '-' + course.e;
+      (groups[key] = groups[key] || []).push(course);
+    });
+    Object.keys(groups).forEach(function (key) {
+      var list = groups[key];
+      var first = list[0];
+      var cell = el('div', 'tt__cell tt__slot');
+      cell.style.gridColumn = String(first.day + 2);
+      cell.style.gridRow = String(first.s + 1) + ' / span ' + String(first.e - first.s + 1);
+      if (list.length > 1) cell.classList.add('tt__slot--split');
+      list.forEach(function (course) {
+        var cat = CAT[course.cat] || CAT.major;
+        var btn = el('button', 'tt__course');
+        btn.type = 'button';
+        btn.style.setProperty('--c', cat.color);
+        btn.style.setProperty('--bg', cat.bg);
+        btn.setAttribute('aria-label', course.name + '，' + DAYS[course.day] + '第' + course.s + '至' + course.e + '节');
+        btn.appendChild(el('span', 'tt__name', course.name));
+        btn.appendChild(el('span', 'tt__meta', course.teacher + ' · ' + course.weeks));
+        btn.appendChild(el('span', 'tt__room', course.room));
+        btn.addEventListener('click', function () { openCourse(course, course.day, btn); });
+        cell.appendChild(btn);
+      });
+      ttGrid.appendChild(cell);
+    });
+  }
+
+  function openCourse(c, dayIdx, trigger) {
+    ttName.textContent = c.name;
+    ttDay.textContent = DAYS[dayIdx];
+    var cat = CAT[c.cat] || CAT.major;
+    ttName.style.color = cat.color;
+    var rows = [
+      ['任课教师', c.teacher],
+      ['上课时间', DAYS[dayIdx] + ' 第' + c.s + '–' + c.e + '节'],
+      ['上课周数', c.weeks],
+      ['上课地点', c.room],
+      ['课程类别', cat.name]
+    ];
+    ttInfo.innerHTML = '';
+    rows.forEach(function (r) {
+      ttInfo.appendChild(el('dt', null, r[0]));
+      ttInfo.appendChild(el('dd', null, r[1]));
+    });
+    openDialog(ttModal, trigger);
+  }
+
+  function renderLegend() {
+    var box = document.getElementById('ttLegend');
+    if (!box) return;
+    Object.keys(CAT).forEach(function (k) {
+      var s = el('span');
+      var i = el('i');
+      i.style.background = CAT[k].color;
+      s.appendChild(i);
+      s.appendChild(document.createTextNode(CAT[k].name));
+      box.appendChild(s);
+    });
+  }
+
+  renderLegend();
+  renderTimetable();
+
+  /* 8. 校历：分段控制器 + 按月时间轴 */
+  var CAL = {
+    t1: {
+      term: '2026–2027 学年 · 第一学期',
+      range: '2026.08.31 — 2027.01.17',
+      weeks: '共 26 教学周',
+      months: [
+        { label: '九月', en: 'SEP 2026', events: [
+          { date: '8月29–30日', sub: '周六 / 周日', title: '学生报到注册', desc: '老生返校报到，完成注册手续。', type: 'event' },
+          { date: '8月31日', sub: '周一 · 第1周', title: '正式开始上课', desc: '第一学期教学工作全面启动。', type: 'event' },
+          { date: '9月5日', sub: '周六', title: '新生报到', desc: '2026 级新生到校报到。', type: 'event' },
+          { date: '9月25日', sub: '周五 · 第4周', title: '中秋节', desc: '按国家规定放假，具体安排以学校通知为准。', type: 'festival' }
+        ]},
+        { label: '十月', en: 'OCT 2026', events: [
+          { date: '10月1日', sub: '周四 · 第5周', title: '国庆节', desc: '按国家规定放假，具体安排以学校通知为准。', type: 'festival' }
+        ]},
+        { label: '一月', en: 'JAN 2027', events: [
+          { date: '1月1日', sub: '周五 · 第18周', title: '元旦', desc: '按国家规定放假。', type: 'festival' },
+          { date: '第19–20周', sub: '1月4日 – 1月17日', title: '期末考试周', desc: '第一学期期末考试，请提前做好复习安排。', type: 'exam', badge: '期末周' },
+          { date: '第21–26周', sub: '1月18日 – 2月28日', title: '寒假', desc: '寒假开始；2月6日为春节。', type: 'break' }
+        ]}
+      ]
+    },
+    t2: {
+      term: '2026–2027 学年 · 第二学期',
+      range: '2027.03.01 — 2027.07.18',
+      weeks: '共 26 教学周',
+      months: [
+        { label: '三月', en: 'MAR 2027', events: [
+          { date: '2月27–28日', sub: '周六 / 周日', title: '学生报到注册', desc: '学生返校报到，完成注册手续。', type: 'event' },
+          { date: '3月1日', sub: '周一 · 第1周', title: '正式开始上课', desc: '第二学期教学工作全面启动。', type: 'event' }
+        ]},
+        { label: '四月', en: 'APR 2027', events: [
+          { date: '4月5日', sub: '周一 · 第6周', title: '清明节', desc: '按国家规定放假。', type: 'festival' }
+        ]},
+        { label: '五月', en: 'MAY 2027', events: [
+          { date: '5月1日', sub: '周六 · 第9周', title: '劳动节', desc: '按国家规定放假。', type: 'festival' },
+          { date: '5月13–14日', sub: '周四 / 周五 · 第11周', title: '校运动会', desc: '学校举行春季运动会，欢迎踊跃报名参与。', type: 'event', badge: '活动' }
+        ]},
+        { label: '六月', en: 'JUN 2027', events: [
+          { date: '6月9日', sub: '周三 · 第15周', title: '端午节', desc: '按国家规定放假。', type: 'festival' }
+        ]},
+        { label: '七月', en: 'JUL 2027', events: [
+          { date: '第19–20周', sub: '7月5日 – 7月18日', title: '期末考试周', desc: '第二学期期末考试；实习、实践周数多的班级按教学计划安排。', type: 'exam', badge: '期末周' },
+          { date: '第21–26周', sub: '7月19日 – 8月29日', title: '暑假', desc: '暑假开始。', type: 'break' }
+        ]}
+      ]
+    }
+  };
+
+  var calPanel = document.getElementById('calPanel');
+  var seg = document.querySelector('.seg');
+  var segBtns = Array.prototype.slice.call(document.querySelectorAll('.seg__btn'));
+
+  function renderCalendar(key) {
+    var data = CAL[key];
+    if (!calPanel || !data) return;
+    calPanel.innerHTML = '';
+    var head = el('div', 'cal__head');
+    head.appendChild(el('span', 'cal__term', data.term));
+    head.appendChild(el('span', 'cal__weeks', data.weeks));
+    head.appendChild(el('span', 'cal__range', data.range));
+    calPanel.appendChild(head);
+
+    var months = el('div', 'cal__months');
+    data.months.forEach(function (m) {
+      var block = el('div', 'cal-month');
+      var label = el('div', 'cal-month__label');
+      label.appendChild(document.createTextNode(m.label));
+      label.appendChild(el('small', null, m.en));
+      block.appendChild(label);
+      var list = el('div', 'cal-events');
+      m.events.forEach(function (ev) {
+        var item = el('div', 'cal-ev cal-ev--' + ev.type);
+        var d = el('div', 'cal-ev__date');
+        d.appendChild(document.createTextNode(ev.date));
+        if (ev.sub) d.appendChild(el('small', null, ev.sub));
+        item.appendChild(d);
+        var body = el('div', 'cal-ev__body');
+        var title = el('div', 'cal-ev__title', ev.title);
+        if (ev.badge) title.appendChild(el('span', 'cal-ev__badge', ev.badge));
+        body.appendChild(title);
+        body.appendChild(el('div', 'cal-ev__desc', ev.desc));
+        item.appendChild(body);
+        list.appendChild(item);
+      });
+      block.appendChild(list);
+      months.appendChild(block);
+    });
+    calPanel.appendChild(months);
+  }
+
+  function switchTerm(key, btn) {
+    if (!seg) return;
+    seg.dataset.active = key;
+    segBtns.forEach(function (b) {
+      var on = b === btn;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    // 重新触发入场动画
+    calPanel.classList.remove('is-active');
+    renderCalendar(key);
+    void calPanel.offsetWidth;
+    calPanel.classList.add('is-active');
+  }
+
+  segBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () { switchTerm(btn.dataset.term, btn); });
+  });
+  renderCalendar('t1');
+
+  /* 班徽连击彩蛋：连续点击 10 次弹出导员照片 */
+  var brandLogo = document.querySelector('.brand__logo');
+  var toast = document.getElementById('toast');
+  var toastTimer = null;
+  var clickCount = 0;
+  if (brandLogo && toast && counselorModal) {
+    brandLogo.style.cursor = 'pointer';
+    brandLogo.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      clickCount++;
+      if (brandLogo.animate) {
+        brandLogo.animate(
+          [{ transform: 'scale(1)' }, { transform: 'scale(.84)' }, { transform: 'scale(1)' }],
+          { duration: 220, easing: 'ease-out' }
+        );
+      }
+      if (clickCount >= 10) {
+        clickCount = 0;
+        toast.classList.remove('is-show');
+        openDialog(counselorModal, brandLogo);
+      } else {
+        toast.textContent = '继续点击有惊喜';
+        toast.classList.add('is-show');
+        window.clearTimeout(toastTimer);
+        toastTimer = window.setTimeout(function () { toast.classList.remove('is-show'); }, 1400);
+      }
+    });
+  }
+
+  /* 关闭：遮罩、关闭钮、Esc；Tab 在弹窗内循环 */
+  dialogs.forEach(function (dialog) {
+    dialog.addEventListener('click', function (e) {
+      var hit = e.target.closest ? e.target.closest('[data-close]') : null;
+      if (hit) closeDialog(dialog);
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    var dialog = dialogs.filter(function (d) { return d.classList.contains('is-open'); })[0];
+    if (!dialog) return;
+    if (e.key === 'Escape') { closeDialog(dialog); return; }
+    if (e.key === 'Tab') {
+      var focusables = dialog.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* 6. 年份 */
+  document.getElementById('year').textContent = String(new Date().getFullYear());
+})();
+</script>
+
+
+<p id="aigc-visible-label" data-aigc-label="v1" role="note" style="display:block!important;visibility:visible!important;opacity:1!important;position:static!important;color:#808080!important;background:transparent!important;border:0!important;font:10px/1.3 sans-serif!important;text-align:right!important;padding:0!important;margin:4px 0 0!important;height:auto!important;max-height:none!important;overflow:visible!important;">   </p></body></html>
